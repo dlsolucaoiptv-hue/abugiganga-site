@@ -1,367 +1,571 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Bugiganga - Smartwatches e Acessórios Tech com Preço Justo</title>
-    <meta name="description" content="Smartwatches, fones TWS e acessórios tech com garantia. Frete para todo Brasil. Pagamento seguro via PIX e cartão.">
-    <link rel="canonical" href="https://abugiganga.com.br/">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary: #ff6b35;
-            --primary-dark: #e55a2b;
-            --dark: #1a1a2e;
-            --gray: #6c757d;
-            --light: #f8f9fa;
-            --success: #28a745;
-            --border: #e0e0e0;
-        }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; line-height: 1.6; background: #fff; }
-        
-        /* Header */
-        header { background: var(--dark); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-        nav ul { display: flex; list-style: none; gap: 2rem; }
-        nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: var(--primary); }
-        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-        
-        /* Hero */
-        .hero { position: relative; height: 400px; background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 800px; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
-        .hero p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
-        .btn { display: inline-block; padding: 0.875rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
-        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,107,53,0.3); }
-        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        
-        /* Trust Bar */
-        .trust-bar { background: var(--light); padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-        .trust-items { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; }
-        .trust-item { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; color: var(--gray); }
-        .trust-item strong { color: var(--dark); }
-        
-        /* Catalog */
-        .catalog { max-width: 1200px; margin: 0 auto; padding: 3rem 1rem; }
-        .section-title { text-align: center; font-size: 2rem; margin-bottom: 0.5rem; color: var(--dark); }
-        .section-subtitle { text-align: center; color: var(--gray); margin-bottom: 2.5rem; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
-        .product-card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-color: var(--primary); }
-        .product-image { width: 100%; height: 220px; object-fit: cover; background: var(--light); }
-        .product-info { padding: 1rem; }
-        .product-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--dark); }
-        .product-price { font-size: 1.25rem; font-weight: bold; color: var(--primary); margin-bottom: 0.5rem; }
-        .product-price small { display: block; font-size: 0.75rem; color: var(--gray); font-weight: normal; }
-        .badge { display: inline-block; padding: 0.25rem 0.5rem; background: var(--primary); color: white; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .badge-new { background: var(--success); }
-        
-        /* Modal */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
-        .modal-overlay.active { display: flex; }
-        .modal { background: white; border-radius: 12px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-        .modal-close { position: absolute; top: 1rem; right: 1rem; background: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; }
-        .modal-gallery img { width: 100%; border-radius: 8px; margin-bottom: 0.5rem; }
-        .modal-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark); }
-        .modal-price { font-size: 2rem; color: var(--primary); font-weight: bold; margin-bottom: 1rem; }
-        .modal-description { color: var(--gray); margin-bottom: 1.5rem; }
-        .specs-list { list-style: none; margin-bottom: 1.5rem; }
-        .specs-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
-        .specs-list strong { color: var(--dark); }
-        
-        /* Checkout Form */
-        .checkout-form { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--border); }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark); font-size: 0.9rem; }
-        .form-group input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
-        .form-group input:focus { outline: none; border-color: var(--primary); }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        
-        /* Footer */
-        footer { background: var(--dark); color: white; padding: 3rem 1rem 1rem; margin-top: 3rem; }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .footer-section h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
-        .footer-section ul { list-style: none; }
-        .footer-section a { color: #ccc; text-decoration: none; display: block; padding: 0.25rem 0; }
-        .footer-section a:hover { color: white; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #333; color: #888; font-size: 0.9rem; }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark); flex-direction: column; padding: 1rem; gap: 1rem; }
-            nav ul.active { display: flex; }
-            .hero h1 { font-size: 2rem; }
-            .modal-body { grid-template-columns: 1fr; padding: 1rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
-            .product-image { height: 160px; }
-        }
-        
-        .loading { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.8s linear infinite; margin-right: 0.5rem; vertical-align: middle; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Bugiganga | Smartwatches para o Seu Tempo</title>
+<meta name="description" content="Smartwatches, pulseiras e fones de ouvido com qualidade premium e preço justo. Envio para todo o Brasil.">
+<link rel="canonical" href="https://abugiganga.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A Bugiganga | Smartwatches para o Seu Tempo">
+<meta property="og:description" content="Tecnologia premium com qualidade excepcional. Envio para todo o Brasil.">
+<meta property="og:url" content="https://abugiganga.com.br/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌚</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"A Bugiganga","url":"https://abugiganga.com.br","description":"Smartwatches e acessórios tech","address":{"@type":"PostalAddress","addressLocality":"Brasília","addressRegion":"DF","addressCountry":"BR"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#ff6b35;--primary-dark:#e55a2b;--dark:#0a0a0a;--dark2:#1a1a1a;--gray:#6c757d;--light:#f8f9fa;--success:#28a745;--border:#e0e0e0;--gold:#d4af37}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;background:#fff}
+a{text-decoration:none;color:inherit}
+header{background:var(--dark);color:#fff;padding:.8rem 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.header-container{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.4rem;font-weight:800;color:var(--primary);letter-spacing:1px}
+.logo span{color:#fff;font-weight:300;font-size:.7rem;display:block;letter-spacing:2px;text-transform:uppercase}
+nav ul{display:flex;list-style:none;gap:1.5rem;align-items:center}
+nav a{color:#ccc;font-size:.85rem;font-weight:500;transition:color .3s;text-transform:uppercase;letter-spacing:.5px}
+nav a:hover{color:var(--primary)}
+.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+.hero{position:relative;min-height:500px;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%,rgba(255,107,53,.1) 0%,transparent 50%);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:3rem 1rem;max-width:700px}
+.hero-logo{font-size:2rem;font-weight:800;color:var(--primary);letter-spacing:2px;margin-bottom:.5rem}
+.hero h1{font-size:2.8rem;margin-bottom:1rem;line-height:1.2;font-weight:300;letter-spacing:1px}
+.hero h1 strong{font-weight:700}
+.hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.btn{display:inline-block;padding:.875rem 2rem;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;border:none;cursor:pointer;transition:all .3s;font-size:1rem;text-align:center}
+.btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 4px 15px rgba(255,107,53,.4)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.3)}
+.btn-outline:hover{border-color:var(--primary);background:rgba(255,107,53,.1)}
+.scroll-hint{color:rgba(255,255,255,.5);font-size:.85rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.trust-bar{background:var(--dark2);padding:1.2rem 0;border-bottom:1px solid #333}
+.trust-items{max-width:1200px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;text-align:center}
+.trust-item{color:#aaa;font-size:.85rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.trust-item strong{color:#fff}
+.section{max-width:1200px;margin:0 auto;padding:3rem 1rem}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-header h2{font-size:1.8rem;color:var(--dark);margin-bottom:.5rem}
+.section-header p{color:var(--gray)}
+.section-dark{background:var(--light)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.product-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1);border-color:var(--primary)}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--primary);color:#fff;padding:.25rem .6rem;border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:.5px;z-index:2}
+.product-badge.badge-new{background:var(--success)}
+.product-badge.badge-gold{background:var(--gold);color:#000}
+.product-badge.badge-promo{background:#e74c3c}
+.product-image{width:100%;height:240px;object-fit:contain;background:#f5f5f5;padding:1rem}
+.product-info{padding:1rem}
+.product-name{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
+.product-specs{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
+.product-specs span{background:var(--light);color:var(--gray);padding:.15rem .4rem;border-radius:3px;font-size:.7rem}
+.product-price{margin-top:.5rem}
+.product-price .old-price{text-decoration:line-through;color:#999;font-size:.85rem}
+.product-price .current-price{font-size:1.2rem;font-weight:800;color:var(--primary)}
+.product-price .pix-label{font-size:.75rem;color:var(--gray)}
+.product-btn{display:block;width:100%;padding:.6rem;background:var(--dark);color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;margin-top:.75rem;transition:background .3s;font-size:.85rem}
+.product-btn:hover{background:var(--primary)}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:12px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:1rem;right:1rem;background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:#f0f0f0}
+.modal-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem}
+.modal-gallery img{width:100%;border-radius:8px;background:#f5f5f5;padding:1rem}
+.modal-category{font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+.modal-title{font-size:1.5rem;margin-bottom:1rem;color:var(--dark)}
+.modal-price-box{margin-bottom:1.5rem}
+.modal-price-box .old-price{text-decoration:line-through;color:#999;font-size:1rem}
+.modal-price-box .current-price{font-size:2rem;font-weight:800;color:var(--primary)}
+.modal-price-box .pix-label{font-size:.85rem;color:var(--gray)}
+.modal-description{color:var(--gray);margin-bottom:1.5rem;line-height:1.8}
+.modal-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.modal-actions .btn{flex:1;min-width:140px}
+.checkout-modal .modal{max-width:600px}
+.checkout-content{padding:2rem}
+.checkout-content h2{font-size:1.3rem;margin-bottom:.5rem;color:var(--dark)}
+.checkout-product-info{background:var(--light);padding:1rem;border-radius:8px;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.checkout-product-info .name{font-weight:600;color:var(--dark)}
+.checkout-product-info .price{font-weight:800;color:var(--primary);font-size:1.1rem}
+.checkout-content h3{font-size:1rem;color:var(--dark);margin:1.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;margin-bottom:.4rem;font-weight:500;color:var(--dark);font-size:.85rem}
+.form-group input,.form-group select{width:100%;padding:.7rem;border:1px solid var(--border);border-radius:6px;font-size:.95rem;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.checkout-secure{text-align:center;margin-top:1rem;font-size:.8rem;color:var(--gray)}
+.checkout-secure strong{color:var(--dark)}
+.info-content{padding:2rem;max-height:80vh;overflow-y:auto}
+.info-content h2{font-size:1.4rem;margin-bottom:1rem;color:var(--dark)}
+.info-content h3{margin:1.5rem 0 .5rem;color:var(--dark);font-size:1.1rem}
+.info-content p,.info-content li{margin-bottom:.75rem;color:#555;line-height:1.7}
+.info-content ul{padding-left:1.5rem}
+.info-content .highlight{background:var(--light);padding:1rem;border-radius:8px;border-left:4px solid var(--primary);margin:1rem 0}
+footer{background:var(--dark);color:#fff;padding:3rem 1rem 1rem;margin-top:3rem}
+.footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-bottom:2rem}
+.footer-section h3{color:var(--primary);margin-bottom:1rem;font-size:1rem;text-transform:uppercase;letter-spacing:1px}
+.footer-section p,.footer-section a{color:#aaa;font-size:.9rem;display:block;padding:.2rem 0}
+.footer-section a:hover{color:var(--primary)}
+.footer-section ul{list-style:none}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid #333;color:#666;font-size:.8rem}
+.loading{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .8s linear infinite;margin-right:.5rem;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){
+.menu-toggle{display:block}
+nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--dark);flex-direction:column;padding:1rem;gap:.75rem;border-top:1px solid #333}
+nav ul.active{display:flex}
+.hero h1{font-size:1.8rem}
+.hero-logo{font-size:1.5rem}
+.modal-body{grid-template-columns:1fr;padding:1rem}
+.form-row{grid-template-columns:1fr}
+.products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.product-image{height:160px}
+.modal-actions{flex-direction:column}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">⚙️ A Bugiganga</a>
-            <button class="menu-toggle" aria-label="Menu">☰</button>
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Tecnologia com Preço Justo</h1>
-            <p>Smartwatches, fones e acessórios tech selecionados com garantia e envio para todo Brasil.</p>
-            <a href="#catalogo" class="btn">Ver Catálogo</a>
-        </div>
-    </section>
+<header>
+<div class="header-container">
+<a href="/" class="logo">a bugiganga<span>SMARTWATCHES PARA O SEU TEMPO</span></a>
+<button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+<nav>
+<ul id="nav-menu">
+<li><a href="#inicio">Início</a></li>
+<li><a href="#smartwatches">Smartwatches</a></li>
+<li><a href="#pulseiras">Pulseiras</a></li>
+<li><a href="#fones">Fones</a></li>
+<li><a href="#promocoes">Promoções</a></li>
+<li><a href="#contato">Contato</a></li>
+<li><a href="#" onclick="openModal('modal-quem-somos');return false">Quem Somos</a></li>
+<li><a href="#" onclick="openModal('modal-garantia');return false">Garantia</a></li>
+</ul>
+</nav>
+</div>
+</header>
 
-    <div class="trust-bar">
-        <div class="trust-items">
-            <div class="trust-item">🔒 <span><strong>Pagamento Seguro</strong><br>via InfinitePay</span></div>
-            <div class="trust-item">📦 <span><strong>Envio Rápido</strong><br>para todo Brasil</span></div>
-            <div class="trust-item">✅ <span><strong>Garantia</strong><br>em todos produtos</span></div>
-        </div>
-    </div>
+<section class="hero" id="inicio">
+<div class="hero-content">
+<div class="hero-logo">a bugiganga</div>
+<h1>Smartwatches para o <strong>seu tempo</strong></h1>
+<div class="hero-buttons">
+<a href="#smartwatches" class="btn">Ver Coleção</a>
+<a href="#promocoes" class="btn btn-outline">Promoções</a>
+</div>
+<p class="scroll-hint">Role para explorar ↓</p>
+</div>
+</section>
 
-    <section class="catalog" id="catalogo">
-        <h2 class="section-title">Nossos Produtos</h2>
-        <p class="section-subtitle">Escolha o que combina com você</p>
-        <div class="products-grid" id="products-grid"></div>
-    </section>
+<div class="trust-bar">
+<div class="trust-items">
+<div class="trust-item">📦 <strong>Envio para todo o Brasil</strong></div>
+<div class="trust-item">🛡️ <strong>Garantia de 1 Ano</strong></div>
+<div class="trust-item">💳 <strong>Pagamento via PIX</strong></div>
+<div class="trust-item">🔒 <strong>Compra 100% Segura</strong></div>
+</div>
+</div>
 
-    <!-- Product Modal -->
-    <div class="modal-overlay" id="product-modal">
-        <div class="modal">
-            <button class="modal-close" aria-label="Fechar">×</button>
-            <div class="modal-body">
-                <div class="modal-gallery">
-                    <img id="modal-image" src="" alt="">
+<section class="section" id="smartwatches">
+<div class="section-header">
+<h2>⌚ Linha Completa de Smartwatches</h2>
+<p>Escolha o smartwatch ideal para seu estilo de vida</p>
+</div>
+<div class="products-grid" id="grid-smartwatches"></div>
+</section>
+
+<section class="section section-dark" id="pulseiras">
+<div class="section-header">
+<h2>📿 Pulseiras Inteligentes</h2>
+<p>Acompanhe sua saúde e atividade física com estilo</p>
+</div>
+<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">✨ Pulseiras Premium & Gold</h3>
+<div class="products-grid" id="grid-premium" style="margin-bottom:3rem"></div>
+<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">👑 Pulseiras VIP</h3>
+<div class="products-grid" id="grid-vip" style="margin-bottom:3rem"></div>
+<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">👜 Pulseiras em Couro</h3>
+<div class="products-grid" id="grid-couro"></div>
+</section>
+
+<section class="section" id="fones">
+<div class="section-header">
+<h2>🎧 Fones de Ouvido</h2>
+<p>Som de qualidade para acompanhar sua rotina</p>
+</div>
+<div class="products-grid" id="grid-fones"></div>
+</section>
+
+<section class="section section-dark" id="promocoes">
+<div class="section-header">
+<h2>🔥 Promoções Imperdíveis</h2>
+<p>Descontos exclusivos de 50% via PIX. Aproveite antes que acabe!</p>
+</div>
+<div class="products-grid" id="grid-promos"></div>
+</section>
+
+<footer id="contato">
+<div class="footer-content">
+<div class="footer-section">
+<h3>A Bugiganga</h3>
+<p>Smartwatches para o seu tempo. Tecnologia premium com qualidade excepcional.</p>
+</div>
+<div class="footer-section">
+<h3>Categorias</h3>
+<ul>
+<li><a href="#smartwatches">⌚ Smartwatches</a></li>
+<li><a href="#pulseiras">📿 Pulseiras</a></li>
+<li><a href="#fones">🎧 Fones</a></li>
+<li><a href="#promocoes">🔥 Promoções</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Contato</h3>
+<p>📱 WhatsApp: (61) 99948-9798</p>
+<p>📍 Brasília - DF</p>
+<p>✉️ contato@abugiganga.com.br</p>
+</div>
+<div class="footer-section">
+<h3>Institucional</h3>
+<ul>
+<li><a href="#" onclick="openModal('modal-quem-somos');return false">Quem Somos</a></li>
+<li><a href="#" onclick="openModal('modal-garantia');return false">Garantia</a></li>
+<li><a href="#" onclick="openModal('modal-privacidade');return false">Política de Privacidade</a></li>
+<li><a href="#" onclick="openModal('modal-termos');return false">Termos de Uso</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 A Bugiganga. Todos os direitos reservados.</p>
+<p>CNPJ: 51.352.245/0001-19 | DENYS LUCIO DA CONCEIÇÃO REIS TEIXEIRA</p>
+</div>
+</footer>
+
+<div class="modal-overlay" id="modal-quem-somos">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-quem-somos')">×</button>
+<div class="info-content">
+<h2>Sobre a A Bugiganga</h2>
+<p>A A Bugiganga nasceu em Brasília-DF com uma missão clara: democratizar o acesso à tecnologia vestível de qualidade no Brasil. Somos uma empresa especializada em smartwatches da linha Wearzone, oferecendo produtos que combinam design, funcionalidade e preço justo.</p>
+<h3>Nossa Missão</h3>
+<p>Proporcionar aos nossos clientes dispositivos que transformam a forma como eles interagem com o tempo, a saúde e a tecnologia no dia a dia.</p>
+<h3>Nossos Valores</h3>
+<ul>
+<li><strong>Qualidade:</strong> Trabalhamos apenas com produtos testados e aprovados.</li>
+<li><strong>Transparência:</strong> Preços claros, sem taxas escondidas.</li>
+<li><strong>Atendimento Humanizado:</strong> Cada cliente é único.</li>
+<li><strong>Agilidade:</strong> Envio rápido para todo o Brasil.</li>
+</ul>
+<div class="highlight">
+<strong>CNPJ:</strong> 51.352.245/0001-19<br>
+<strong>Razão Social:</strong> Denys Lucio da Conceição Reis Teixeira<br>
+<strong>Localização:</strong> Brasília - DF
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-garantia">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-garantia')">×</button>
+<div class="info-content">
+<h2>🛡️ Política de Garantia</h2>
+<h3>Garantia de 1 Ano</h3>
+<p>Todos os smartwatches vendidos pela A Bugiganga possuem garantia de 1 ano contra defeitos de fabricação.</p>
+<h3>O que a garantia cobre?</h3>
+<ul>
+<li>Defeitos de fabricação no hardware</li>
+<li>Problemas de funcionamento do sistema</li>
+<li>Falhas na conectividade (Bluetooth, Wi-Fi)</li>
+<li>Problemas com carregamento</li>
+</ul>
+<h3>Como acionar?</h3>
+<p>Entre em contato via WhatsApp (61) 99948-9798 com nome, CPF, descrição do problema e fotos/vídeos.</p>
+<h3>Prazo de Arrependimento</h3>
+<p>Você tem 7 dias corridos após o recebimento para desistir da compra (Art. 49 do CDC).</p>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-privacidade">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-privacidade')">×</button>
+<div class="info-content">
+<h2>🔒 Política de Privacidade</h2>
+<p><em>Última atualização: Julho de 2026</em></p>
+<p>A A Bugiganga respeita sua privacidade em conformidade com a LGPD (Lei 13.709/2018).</p>
+<h3>1. Dados que Coletamos</h3>
+<ul>
+<li>Dados de identificação (nome, CPF)</li>
+<li>Dados de contato (e-mail, telefone)</li>
+<li>Dados de entrega (endereço completo)</li>
+<li>Dados de pagamento (processados pela InfinitePay)</li>
+</ul>
+<h3>2. Como Usamos Seus Dados</h3>
+<ul>
+<li>Processar e entregar seu pedido</li>
+<li>Enviar atualizações sobre a compra</li>
+<li>Prestar suporte pós-venda</li>
+<li>Cumprir obrigações legais</li>
+</ul>
+<h3>3. Seus Direitos (LGPD)</h3>
+<p>Você pode acessar, corrigir ou solicitar exclusão dos seus dados através do e-mail: contato@abugiganga.com.br</p>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-termos">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-termos')">×</button>
+<div class="info-content">
+<h2>📜 Termos de Uso</h2>
+<p>Ao utilizar o site da A Bugiganga, você concorda com estes termos.</p>
+<h3>1. Produtos e Preços</h3>
+<p>Preços e descrições podem ser alterados sem aviso prévio. Erros serão corrigidos antes da confirmação do pedido.</p>
+<h3>2. Processo de Compra</h3>
+<p>Compras realizadas através do checkout seguro da InfinitePay, com confirmação automática de pagamento.</p>
+<h3>3. Pagamento</h3>
+<p>Aceitamos PIX e cartão de crédito via InfinitePay. O pedido é processado após confirmação automática do pagamento.</p>
+<h3>4. Foro</h3>
+<p>Fica eleito o foro de Brasília-DF para dirimir dúvidas destes Termos.</p>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modal-produto">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-produto')">×</button>
+<div class="modal-body">
+<div class="modal-gallery">
+<img id="detail-image" src="" alt="">
+</div>
+<div>
+<div class="modal-category" id="detail-category"></div>
+<h2 class="modal-title" id="detail-name"></h2>
+<div class="modal-price-box">
+<div class="old-price" id="detail-old-price"></div>
+<div class="current-price" id="detail-price"></div>
+<div class="pix-label">no PIX</div>
+</div>
+<p class="modal-description" id="detail-description"></p>
+<div class="modal-actions">
+<button class="btn" onclick="openCheckout()">🛒 Comprar Agora</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay checkout-modal" id="modal-checkout">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('modal-checkout')">×</button>
+<div class="checkout-content">
+<h2>Finalizar Compra</h2>
+<div class="checkout-product-info">
+<span class="name" id="checkout-product-name"></span>
+<span class="price" id="checkout-product-price"></span>
+</div>
+<form id="checkout-form">
+<h3>Dados Pessoais</h3>
+<div class="form-group">
+<label for="c-name">Nome Completo *</label>
+<input type="text" id="c-name" required placeholder="Seu nome completo">
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="c-cpf">CPF *</label>
+<input type="text" id="c-cpf" required placeholder="000.000.000-00" maxlength="14">
+</div>
+<div class="form-group">
+<label for="c-phone">WhatsApp *</label>
+<input type="tel" id="c-phone" required placeholder="(00) 00000-0000" maxlength="15">
+</div>
+</div>
+<div class="form-group">
+<label for="c-email">E-mail *</label>
+<input type="email" id="c-email" required placeholder="seu@email.com">
+</div>
+<h3>Endereço de Entrega</h3>
+<div class="form-row">
+<div class="form-group">
+<label for="c-cep">CEP *</label>
+<input type="text" id="c-cep" required placeholder="00000-000" maxlength="9">
+</div>
+<div class="form-group">
+<label for="c-number">Número *</label>
+<input type="text" id="c-number" required placeholder="Nº">
+</div>
+</div>
+<div class="form-group">
+<label for="c-street">Rua *</label>
+<input type="text" id="c-street" required placeholder="Nome da rua">
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="c-city">Cidade *</label>
+<input type="text" id="c-city" required placeholder="Sua cidade">
+</div>
+<div class="form-group">
+<label for="c-state">Estado *</label>
+<select id="c-state" required>
+<option value="">Selecione</option>
+<option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+<option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+<option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+<option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+<option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+<option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+<option>SP</option><option>SE</option><option>TO</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="c-complement">Complemento</label>
+<input type="text" id="c-complement" placeholder="Apto, bloco, etc.">
+</div>
+<button type="submit" class="btn btn-checkout" style="width:100%;margin-top:1rem;padding:1rem;font-size:1.05rem">
+🔒 Ir para Pagamento Seguro
+</button>
+<p class="checkout-secure">
+Você será redirecionado para o checkout seguro da <strong>InfinitePay</strong>.<br>
+Aceita PIX e cartão de crédito em até 12x.
+</p>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+const productsDB = [
+{id:1,cat:"smartwatches",badge:"BÁSICO",name:"HORIZON LITE+",image:"https://wearzonebrasil.com.br/cdn/shop/files/3_1_e5e6aef8-fa22-4de5-9ce9-a0e3db944bca_1000x.png?v=1744054952",oldPrice:599.00,price:409.00,specs:["💧 1ATM","📱 Notificações","🔋 5 dias"],description:"Smartwatch básico e funcional com notificações, resistência à água 1ATM e bateria de 5 dias. Ideal para quem busca praticidade no dia a dia."},
+{id:2,cat:"smartwatches",badge:"DESIGN",name:"FLARE",image:"https://http2.mlstatic.com/D_NQ_NP_2X_786985-MLA113159746349_062026-F.webp",oldPrice:789.99,price:549.90,specs:["AMOLED Cores","💧 5ATM","🔋 10 dias"],description:"Smartwatch com tela AMOLED colorida, resistência 5ATM e bateria de 10 dias. Design elegante para todas as ocasiões."},
+{id:3,cat:"smartwatches",badge:"RESISTENTE",name:"BRAVE",image:"https://http2.mlstatic.com/D_NQ_NP_2X_944428-MLA98828367660_112025-F.webp",oldPrice:789.99,price:549.90,specs:["💪 Robusto","💧 5ATM","🏃 Esportes","🔋 10 dias"],description:"Smartwatch robusto com modos esportivos avançados, resistência 5ATM e bateria de longa duração de 10 dias."},
+{id:4,cat:"smartwatches",badge:"PREMIUM",name:"HORIZON TITAN",image:"https://http2.mlstatic.com/D_NQ_NP_2X_808543-MLB111294723727_052026-F.webp",oldPrice:769.99,price:579.90,specs:["🛰️ GPS","⚙️ Titânio","💧 5ATM","🔋 2 dias"],description:"Smartwatch premium com caixa em titânio, GPS integrado e resistência 5ATM. Para quem exige o melhor."},
+{id:5,cat:"smartwatches",badge:"FITNESS",name:"PULSE",image:"https://i.imgur.com/ub4DTL9.jpg",oldPrice:289.99,price:249.99,specs:["❤️ Cardíaco","+80 esportes","💧 3ATM","🔋 7 dias"],description:"Smartwatch fitness com monitoramento cardíaco e mais de 80 modos esportivos. Resistência 3ATM e bateria de 7 dias."},
+{id:6,cat:"smartwatches",badge:"SIMPLES",name:"EASY",image:"https://i.imgur.com/L0gkkTw.jpg",oldPrice:289.99,price:249.99,specs:["👆 Fácil","Básico","💧 1ATM","🔋 7 dias"],description:"Smartwatch simples e fácil de usar. Interface intuitiva, resistência 1ATM e bateria de 7 dias."},
+{id:7,cat:"smartwatches",badge:"ESPORTE",name:"ACTION",image:"https://i.imgur.com/HoXWUeX.jpg",oldPrice:589.90,price:399.00,specs:["🏄 Radical","💧 3ATM","🛰️ GPS","🔋 7 dias"],description:"Smartwatch esportivo para atividades radicais. GPS integrado, resistência 3ATM e bateria de 7 dias."},
+{id:8,cat:"smartwatches",badge:"FEMININO",name:"LIFE",image:"https://i.imgur.com/OhUGDSn.jpg",oldPrice:389.99,price:299.99,specs:["💧 1ATM","AMOLED","🔋 Longa","🌸 Rosa"],description:"Smartwatch feminino com tela AMOLED, design rosa elegante e bateria de longa duração."},
+{id:9,cat:"smartwatches",badge:"MILITAR",name:"FÊNIX",image:"https://i.imgur.com/0EruJJt.jpg",oldPrice:479.99,price:298.99,specs:["🪖 Militar","💧 10ATM","🏔️ Outdoor","🔋 7 dias"],description:"Smartwatch militar com resistência 10ATM, ideal para atividades outdoor. Bateria de 7 dias e construção robusta."},
+{id:10,cat:"smartwatches",badge:"TECH",name:"KRON",image:"https://i.imgur.com/Z6hQlKM.jpg",oldPrice:479.99,price:398.00,specs:["⚙️ Alumínio","AMOLED","💧 10m","🔋 3 dias"],description:"Smartwatch tech com corpo em alumínio, tela AMOLED e resistência à água de 10 metros."},
+{id:11,cat:"premium",badge:"AÇO",name:"Pulseira Aço de Luxo",image:"https://thumbnails.meuspedidos.com.br/unVl_mCfu6g9UMrVg9jedVWY-c0=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/fb0224a0-ac21-11f0-b359-babb381ff2a0.jpg",price:89.99,specs:["38mm/40mm/41mm","Luxo"],description:"Pulseira de aço de luxo compatível com smartwatches de 38mm, 40mm e 41mm. Acabamento premium."},
+{id:12,cat:"premium",badge:"ELOS",name:"Pulseira de Aço Elos Pino",image:"https://thumbnails.meuspedidos.com.br/GQNR6uQQ89oRRoBAKVoXMVtFUGM=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/74105368-4adc-11f1-bc22-96aa9bfa9a9b.png",price:99.99,specs:["18mm/22mm","🔗 Robusta"],description:"Pulseira de aço com elos pino, robusta e durável. Disponível em 18mm e 22mm."},
+{id:13,cat:"premium",badge:"PÉROLA",name:"Pulseira de Luxo Pérola",image:"https://arquivos.mercos.com/media/imagem_produto/421733/b545c7ec-adab-11f0-969e-46c36c860b59.jpg",price:89.99,specs:["42mm/44mm/45mm/49mm","✨ Elegante"],description:"Pulseira de luxo com acabamento pérola, elegante e sofisticada para smartwatches de 42mm a 49mm."},
+{id:14,cat:"premium",badge:"🥇 GOLD",badgeClass:"badge-gold",name:"Pulseira Milanesa Loop",image:"https://thumbnails.meuspedidos.com.br/W2gnADS1dzzRocU5kBHZ_h4DmpI=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/bd350de6-ae7d-11f0-aa6c-4eb9c1f8f5a9.jpg",price:149.99,specs:["42mm/44mm/45mm/49mm","Ajustável","Gold"],description:"Pulseira Milanesa Loop com acabamento dourado, ajustável e elegante. Compatível com 42mm a 49mm."},
+{id:15,cat:"vip",badge:"SILICONE",name:"Pulseira Silicone Elo Magnético Ocean",image:"https://thumbnails.meuspedidos.com.br/pXbU5e8XmManOG2E720xkz51-Ac=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/0b3b8b6c-b33f-11f0-8134-eafaf43df6ad.jpg",price:48.99,specs:["38mm/40mm/41mm","Magnética"],description:"Pulseira de silicone com fecho magnético, tema ocean. Leve e confortável para uso diário."},
+{id:16,cat:"vip",badge:"TITANIUM",name:"Pulseira Silicone Robot Titanium",image:"https://thumbnails.meuspedidos.com.br/d3ymXV85HkoIRSuM-cgBuIdhM9I=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/26ce211e-b33f-11f0-8302-5e3862b393bd.png",price:49.99,specs:["42mm/44mm/45mm/49mm","🤖 Robust"],description:"Pulseira de silicone estilo robot com acabamento titanium. Robusta e moderna."},
+{id:17,cat:"vip",badge:"NYLON",name:"Pulseira Nylon Strap",image:"https://thumbnails.meuspedidos.com.br/dVRQb8OG2kbsAyzmN20ISZ5iUCg=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/d9008544-5eba-11f1-a0f0-decb12be9ca0.png",price:39.99,specs:["42mm/44mm/45mm/46mm/49mm","🏃 Esportiva"],description:"Pulseira de nylon esportiva, leve e respirável. Ideal para atividades físicas."},
+{id:18,cat:"vip",badge:"LAÇO",name:"Pulseira Elo Magnético com Fecho de Laço",image:"https://thumbnails.meuspedidos.com.br/xBl9UczC5YRuAEbpk-rGy2289CQ=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/2d4852dc-adac-11f0-8539-2a211abfb2e8.jpg",price:39.99,specs:["42mm/44mm/45mm/47mm/49mm","🎀 Feminino"],description:"Pulseira com fecho de laço e elo magnético. Design feminino e delicado."},
+{id:19,cat:"vip",badge:"3 ELOS",name:"Pulseira de Aço 3 Elos Premium",image:"https://thumbnails.meuspedidos.com.br/584eZK74ETpOquVKbqbmkWVOAb0=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/e0f823ac-ada7-11f0-9579-e6e1cd7b6e31.png",price:69.99,specs:["42mm/44mm/45mm/47mm/49mm","💫 Premium"],description:"Pulseira de aço com 3 elos premium. Acabamento sofisticado e resistente."},
+{id:20,cat:"vip",badge:"7 ELOS",name:"Pulseira de Aço 7 Elos",image:"https://thumbnails.meuspedidos.com.br/S6_GBszwaw2ro2wi1YfhrBlM-Po=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/b807d5ce-5e90-11f1-b2c8-666486c5a5ed.jpg",price:49.99,specs:["38mm/41mm/42mm/49mm","⛓️ Clássica"],description:"Pulseira de aço com 7 elos, design clássico e atemporal."},
+{id:21,cat:"couro",badge:"SLIM",name:"Pulseira de Couro Slim",image:"https://thumbnails.meuspedidos.com.br/ddZepZpldfx6FI4iowwRymPXloI=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/0ded30de-56ac-11f1-99fb-7e873a1f9b93.png",price:39.00,specs:["38mm/40mm/41mm","Elegante"],description:"Pulseira de couro slim, fina e elegante para smartwatches compactos."},
+{id:22,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra Pino",image:"https://thumbnails.meuspedidos.com.br/Q6HrZOTwlD6HcFM6_SkQtNDEEBA=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/528060fa-adaa-11f0-9fa0-027dae3dbb17.png",price:45.99,specs:["22mm","🎯 Conforto"],description:"Pulseira de couro microfibra com fecho pino. Confortável e durável em 22mm."},
+{id:23,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra",image:"https://thumbnails.meuspedidos.com.br/btWjWV-FcU2NsZW7cV-Fyqw3dWM=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/f215de52-ada9-11f0-a0d8-429b3c3166ba.png",price:44.99,specs:["42mm/44mm/45mm/47mm/49mm","💼 Profissional"],description:"Pulseira de couro microfibra para smartwatches grandes. Visual profissional e sofisticado."},
+{id:24,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra",image:"https://thumbnails.meuspedidos.com.br/btWjWV-FcU2NsZW7cV-Fyqw3dWM=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/f215de52-ada9-11f0-a0d8-429b3c3166ba.png",price:25.00,specs:["38mm/40mm/41mm","✨ Compacta"],description:"Pulseira de couro microfibra compacta para smartwatches menores. Leve e prática."},
+{id:25,cat:"couro",badge:"FIT SLIM",name:"Pulseira de Couro Fit Slim",image:"https://thumbnails.meuspedidos.com.br/V8ECFpAzx1xLqVbBpPa7VLSa6Sk=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/15567e1a-5923-11f1-881d-aa4d6a64195d.png",price:25.00,specs:["38mm/40mm/41mm","🏃 Esportiva"],description:"Pulseira de couro fit slim com design esportivo. Ideal para o dia a dia ativo."},
+{id:26,cat:"couro",badge:"CLÁSSICA",name:"Pulseira De Couro",image:"https://thumbnails.meuspedidos.com.br/jDmZntHSV9GbwemTjxLDihZqhnA=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/a853f9f8-ada8-11f0-909e-be33e4bc9324.jpg",price:27.00,specs:["42mm/44mm/45mm/47mm/49mm","Clássica"],description:"Pulseira de couro clássica para smartwatches grandes. Design atemporal e versátil."},
+{id:27,cat:"couro",badge:"LISO",name:"Pulseira Couro Liso",image:"https://thumbnails.meuspedidos.com.br/Yon2BDo_tRYaYbzjqzy2E2XMp4s=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/095d4404-ac26-11f0-80ab-82dc3cbd924a.jpeg",price:24.99,specs:["22mm","Minimalista"],description:"Pulseira de couro liso com design minimalista em 22mm. Simplicidade e elegância."},
+{id:28,cat:"fones",badge:"HEADSET",name:"HEADSET WZ08",image:"https://http2.mlstatic.com/D_Q_NP_2X_824220-MLB107758444996_032026-R-fone-headset-wearzone-wz08-bluetooth-sem-fio.webp",oldPrice:489.99,price:349.99,specs:["🎮 Gamer","🎧 ANC -43dB","🔋 60h"],description:"Headset gamer com cancelamento de ruído ativo de -43dB e bateria de 60 horas. Som imersivo para jogos e música."},
+{id:29,cat:"fones",badge:"TWS",name:"TWS WZ06",image:"https://thumbnails.meuspedidos.com.br/mPk53Z87WKq1sRpQfHwVXZ721hQ=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/09d629d6-b4d3-11f0-ae3a-e22d5eb8642b.jpg",oldPrice:259.99,price:189.99,specs:["🔊 Bluetooth","ANC -28dB","🔋 7h"],description:"Fone TWS Bluetooth com cancelamento de ruído -28dB e 7 horas de bateria. Compacto e potente."},
+{id:30,cat:"fones",badge:"BUDS",name:"ZONE BUDS 01",image:"https://http2.mlstatic.com/D_NQ_NP_2X_629074-MLB113102871096_072026-F.webp",oldPrice:189.99,price:149.99,specs:["In-Ear","🔋 32h total","IPX4"],description:"Fone in-ear com 32 horas de bateria total (estojo + fones) e resistência IPX4."},
+{id:31,cat:"promos",badge:"50% OFF",badgeClass:"badge-promo",name:"Watch 29 Pro - Microwear",image:"https://thumbnails.meuspedidos.com.br/SgPIS1wOvXfVGLxrb3U36ZLgb1o=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/cea87ade-b4f6-11f0-905c-ba8a7e4b6c21.jpeg",oldPrice:230.00,price:115.00,specs:["48mm","Slim","🤖 ChatGPT","1GB"],description:"Smartwatch Microwear Watch 29 Pro com 48mm, design slim, integração com ChatGPT e 1GB de armazenamento. 50% de desconto!"},
+{id:32,cat:"promos",badge:"50% OFF",badgeClass:"badge-promo",name:"Microwear W10 Pro",image:"https://http2.mlstatic.com/D_NQ_NP_2X_629074-MLB113102871096_072026-F.webp",oldPrice:249.99,price:129.99,specs:["AMOLED 1,77\"","⚙️ Titânio","IP68"],description:"Smartwatch Microwear W10 Pro com tela AMOLED de 1,77\", corpo em titânio e certificação IP68. Metade do preço!"}
+];
+
+function renderProducts(containerId, category) {
+    const grid = document.getElementById(containerId);
+    productsDB.filter(p => p.cat === category).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => openProductDetail(p);
+        const bc = p.badgeClass || '';
+        card.innerHTML = `
+            ${p.badge ? `<span class="product-badge ${bc}">${p.badge}</span>` : ''}
+            <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" onerror="this.style.background='#eee'">
+            <div class="product-info">
+                <h3 class="product-name">${p.name}</h3>
+                <div class="product-specs">${p.specs.map(s=>`<span>${s}</span>`).join('')}</div>
+                <div class="product-price">
+                    ${p.oldPrice ? `<div class="old-price">De R$ ${p.oldPrice.toFixed(2).replace('.',',')}</div>` : ''}
+                    <div class="current-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
+                    <div class="pix-label">no PIX</div>
                 </div>
-                <div class="modal-details">
-                    <span class="badge" id="modal-badge">DESTAQUE</span>
-                    <h2 class="modal-title" id="modal-title"></h2>
-                    <div class="modal-price" id="modal-price"></div>
-                    <p class="modal-description" id="modal-description"></p>
-                    <ul class="specs-list" id="modal-specs"></ul>
-                    
-                    <div class="checkout-form">
-                        <h3 style="margin-bottom: 1rem;">Finalizar Compra</h3>
-                        <form id="checkout-form">
-                            <div class="form-group">
-                                <label for="customer-name">Nome completo *</label>
-                                <input type="text" id="customer-name" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="customer-cpf">CPF *</label>
-                                    <input type="text" id="customer-cpf" placeholder="000.000.000-00" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="customer-phone">Telefone *</label>
-                                    <input type="tel" id="customer-phone" placeholder="(00) 00000-0000" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-email">E-mail *</label>
-                                <input type="email" id="customer-email" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="customer-cep">CEP *</label>
-                                    <input type="text" id="customer-cep" placeholder="00000-000" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="customer-number">Número *</label>
-                                    <input type="text" id="customer-number" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-address">Endereço *</label>
-                                <input type="text" id="customer-address" required>
-                            </div>
-                            <button type="submit" class="btn btn-checkout" style="width: 100%;">
-                                Ir para Pagamento Seguro
-                            </button>
-                            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
-                                🔒 Você será redirecionado para o checkout seguro da InfinitePay
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <button class="product-btn">👁️ Ver Detalhes</button>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
+renderProducts('grid-smartwatches','smartwatches');
+renderProducts('grid-premium','premium');
+renderProducts('grid-vip','vip');
+renderProducts('grid-couro','couro');
+renderProducts('grid-fones','fones');
+renderProducts('grid-promos','promos');
 
-    <footer id="contato">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>A Bugiganga</h3>
-                <p style="color: #ccc; font-size: 0.9rem;">Tecnologia com preço justo.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <ul>
-                    <li><a href="mailto:contato@abugiganga.com.br">contato@abugiganga.com.br</a></li>
-                    <li><a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 A Bugiganga. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow=''}
+document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('active');document.body.style.overflow=''}})});
+document.querySelector('.menu-toggle').addEventListener('click',function(){const m=document.getElementById('nav-menu');m.classList.toggle('active');this.setAttribute('aria-expanded',m.classList.contains('active'))});
+document.querySelectorAll('#nav-menu a').forEach(a=>{a.addEventListener('click',()=>{document.getElementById('nav-menu').classList.remove('active')})});
 
-    <script>
-        // Banco de dados de produtos (32 itens)
-        const productsDB = [
-            { id: 1, name: "FÊNIX Smartwatch", price: 299.90, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400", badge: "MAIS VENDIDO", description: "Smartwatch premium com GPS integrado e resistência à água.", specs: [["Tela", "1.9\" AMOLED"], ["Bateria", "7 dias"], ["Resistência", "10ATM"], ["GPS", "Integrado"]] },
-            { id: 2, name: "TWS WZ06", price: 89.90, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", badge: "NOVO", description: "Fone de ouvido Bluetooth TWS com cancelamento de ruído.", specs: [["Bateria", "30h com estojo"], ["Bluetooth", "5.3"], ["Resistência", "IPX5"], ["Driver", "13mm"]] },
-            { id: 3, name: "Smartwatch Pro X1", price: 249.90, image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400", badge: "DESTAQUE", description: "Smartwatch com tela AMOLED e mais de 100 modos esportivos.", specs: [["Tela", "1.8\" AMOLED"], ["Bateria", "5 dias"], ["Sensores", "SpO2, FC"], ["Modos", "100+"]] },
-            { id: 4, name: "Fone Bluetooth Air", price: 59.90, image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400", description: "Fone Bluetooth leve e confortável para uso diário.", specs: [["Bateria", "6h"], ["Bluetooth", "5.0"], ["Peso", "4g cada"], ["Carga", "USB-C"]] },
-            { id: 5, name: "Smartwatch Sport", price: 179.90, image: "https://images.unsplash.com/photo-1508685096489-7aacd40bd3e9?w=400", description: "Smartwatch focado em esportes com GPS e monitoramento avançado.", specs: [["Tela", "1.69\" TFT"], ["Bateria", "10 dias"], ["GPS", "Sim"], ["Modos", "50+"]] },
-            { id: 6, name: "Pulseira Fitness", price: 99.90, image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400", description: "Pulseira fitness com monitoramento 24h de atividades.", specs: [["Tela", "0.96\" OLED"], ["Bateria", "14 dias"], ["Sensores", "FC, SpO2"], ["Resistência", "IP68"]] },
-            { id: 7, name: "Fone Gamer RGB", price: 149.90, image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400", badge: "GAMER", description: "Headset gamer com iluminação RGB e som surround.", specs: [["Driver", "50mm"], ["Microfone", "Removível"], ["Conexão", "USB/P2"], ["RGB", "Sim"]] },
-            { id: 8, name: "Carregador Turbo 65W", price: 79.90, image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400", description: "Carregador rápido GaN de 65W com múltiplas portas.", specs: [["Potência", "65W"], ["Portas", "2 USB-C + 1 USB-A"], ["Tecnologia", "GaN"], ["Compatível", "PD 3.0"]] }
-            // (Adicionei 8 produtos de exemplo para o código não ficar gigante, mas a lógica funciona para quantos você quiser!)
-        ];
+let currentProduct=null;
+function openProductDetail(p){
+    currentProduct=p;
+    document.getElementById('detail-image').src=p.image;
+    document.getElementById('detail-image').alt=p.name;
+    document.getElementById('detail-category').textContent=p.cat.toUpperCase();
+    document.getElementById('detail-name').textContent=p.name;
+    const op=document.getElementById('detail-old-price');
+    if(p.oldPrice){op.textContent='De R$ '+p.oldPrice.toFixed(2).replace('.',',');op.style.display='block'}else{op.style.display='none'}
+    document.getElementById('detail-price').textContent='R$ '+p.price.toFixed(2).replace('.',',');
+    document.getElementById('detail-description').textContent=p.description;
+    openModal('modal-produto');
+}
 
-        // Renderizar produtos
-        const grid = document.getElementById('products-grid');
-        productsDB.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.onclick = () => openProductModal(product);
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
-                <div class="product-info">
-                    ${product.badge ? `<span class="badge ${product.badge === 'NOVO' ? 'badge-new' : ''}">${product.badge}</span>` : ''}
-                    <h3 class="product-name">${product.name}</h3>
-                    <div class="product-price">
-                        R$ ${product.price.toFixed(2).replace('.', ',')}
-                        <small>ou 12x de R$ ${(product.price / 12).toFixed(2).replace('.', ',')}</small>
-                    </div>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
+function openCheckout(){
+    if(!currentProduct)return;
+    closeModal('modal-produto');
+    document.getElementById('checkout-product-name').textContent=currentProduct.name;
+    document.getElementById('checkout-product-price').textContent='R$ '+currentProduct.price.toFixed(2).replace('.',',');
+    setTimeout(()=>openModal('modal-checkout'),300);
+}
 
-        let currentProduct = null;
-        
-        function openProductModal(product) {
-            currentProduct = product;
-            document.getElementById('modal-image').src = product.image;
-            document.getElementById('modal-title').textContent = product.name;
-            document.getElementById('modal-price').textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
-            document.getElementById('modal-description').textContent = product.description;
-            
-            const badge = document.getElementById('modal-badge');
-            if (product.badge) {
-                badge.textContent = product.badge;
-                badge.style.display = 'inline-block';
-            } else {
-                badge.style.display = 'none';
-            }
-            
-            const specsList = document.getElementById('modal-specs');
-            specsList.innerHTML = product.specs.map(([key, value]) => `<li><strong>${key}:</strong> <span>${value}</span></li>`).join('');
-            
-            document.getElementById('product-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            document.getElementById('product-modal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
-            el.addEventListener('click', (e) => {
-                if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('modal-close')) {
-                    closeModal();
-                }
-            });
-        });
-        
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
-            document.getElementById('nav-menu').classList.toggle('active');
-        });
+document.getElementById('c-cpf').addEventListener('input',function(){let v=this.value.replace(/\D/g,'');v=v.replace(/(\d{3})(\d)/,'$1.$2');v=v.replace(/(\d{3})(\d)/,'$1.$2');v=v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');this.value=v});
+document.getElementById('c-phone').addEventListener('input',function(){let v=this.value.replace(/\D/g,'');v=v.replace(/^(\d{2})(\d)/g,'($1) $2');v=v.replace(/(\d)(\d{4})$/,'$1-$2');this.value=v});
+document.getElementById('c-cep').addEventListener('input',function(){let v=this.value.replace(/\D/g,'');v=v.replace(/(\d{5})(\d)/,'$1-$2');this.value=v});
+document.getElementById('c-cep').addEventListener('blur',async function(){const c=this.value.replace(/\D/g,'');if(c.length===8){try{const r=await fetch('https://viacep.com.br/ws/'+c+'/json/');const d=await r.json();if(!d.erro){document.getElementById('c-street').value=d.logradouro||'';document.getElementById('c-city').value=d.localidade||'';document.getElementById('c-state').value=d.uf||''}}catch(e){}}});
 
-        // Máscaras de input
-        document.getElementById('customer-cpf').addEventListener('input', (e) => {
-            let v = e.target.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            e.target.value = v;
+document.getElementById('checkout-form').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=this.querySelector('.btn-checkout');
+    const orig=btn.innerHTML;
+    btn.innerHTML='<span class="loading"></span>Gerando link de pagamento...';
+    btn.disabled=true;
+    const customer={
+        name:document.getElementById('c-name').value,
+        cpf:document.getElementById('c-cpf').value,
+        phone:document.getElementById('c-phone').value,
+        email:document.getElementById('c-email').value,
+        cep:document.getElementById('c-cep').value,
+        number:document.getElementById('c-number').value,
+        street:document.getElementById('c-street').value,
+        city:document.getElementById('c-city').value,
+        state:document.getElementById('c-state').value,
+        complement:document.getElementById('c-complement').value
+    };
+    try{
+        const res=await fetch('/api/create-checkout',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({produto:currentProduct.name,preco:currentProduct.price,produtoId:currentProduct.id,infiniteTag:'denys_lucio_da_c',customer:customer})
         });
-        document.getElementById('customer-phone').addEventListener('input', (e) => {
-            let v = e.target.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/g, '($1) $2').replace(/(\d)(\d{4})$/, '$1-$2');
-            e.target.value = v;
-        });
-        document.getElementById('customer-cep').addEventListener('input', (e) => {
-            let v = e.target.value.replace(/\D/g, '').replace(/(\d{5})(\d)/, '$1-$2');
-            e.target.value = v;
-        });
-
-        // Checkout - Integração Cloudflare + InfinitePay
-        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-checkout');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="loading"></span>Gerando link...';
-            btn.disabled = true;
-            
-            const customerData = {
-                name: document.getElementById('customer-name').value,
-                cpf: document.getElementById('customer-cpf').value,
-                phone: document.getElementById('customer-phone').value,
-                email: document.getElementById('customer-email').value,
-                cep: document.getElementById('customer-cep').value,
-                number: document.getElementById('customer-number').value,
-                address: document.getElementById('customer-address').value
-            };
-            
-            try {
-                const response = await fetch('/api/create-checkout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        produto: currentProduct.name,
-                        preco: currentProduct.price,
-                        produtoId: currentProduct.id,
-                        infiniteTag: 'denys_lucio_da_c',
-                        customer: customerData
-                    })
-                });
-                
-                const data = await response.json();
-                if (data.url) {
-                    window.location.href = data.url;
-                } else {
-                    alert('Erro ao gerar link: ' + (data.error || 'Tente novamente.'));
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                alert('Erro de conexão. Verifique sua internet.');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        });
-    </script>
+        const data=await res.json();
+        if(data.url){window.location.href=data.url}
+        else{alert('Erro ao gerar link: '+(data.error||'Tente novamente.'));btn.innerHTML=orig;btn.disabled=false}
+    }catch(err){console.error(err);alert('Erro de conexão. Verifique sua internet.');btn.innerHTML=orig;btn.disabled=false}
+});
+</script>
 </body>
 </html>
