@@ -10,129 +10,176 @@
 <meta property="og:title" content="A Bugiganga | Smartwatches para o Seu Tempo">
 <meta property="og:description" content="Tecnologia premium com qualidade excepcional. Envio para todo o Brasil.">
 <meta property="og:url" content="https://abugiganga.com.br/">
-<meta property="og:image" content="https://abugiganga.com.br/logo-horizontal.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="logo-vertical.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌚</text></svg>">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Store","name":"A Bugiganga","url":"https://abugiganga.com.br","description":"Smartwatches e acessórios tech","logo":"https://abugiganga.com.br/logo-horizontal.png","address":{"@type":"PostalAddress","addressLocality":"Brasília","addressRegion":"DF","addressCountry":"BR"}}
+{"@context":"https://schema.org","@type":"Store","name":"A Bugiganga","url":"https://abugiganga.com.br","description":"Smartwatches e acessórios tech","address":{"@type":"PostalAddress","addressLocality":"Brasília","addressRegion":"DF","addressCountry":"BR"}}
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#ff6b35;--primary-dark:#e55a2b;--dark:#0a0a0a;--dark2:#1a1a1a;--gray:#6c757d;--light:#f8f9fa;--success:#28a745;--border:#e0e0e0;--gold:#d4af37}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333;line-height:1.6;background:#fff}
-a{text-decoration:none;color:inherit}
-header{background:var(--dark);color:#fff;padding:.8rem 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3)}
-.header-container{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;justify-content:space-between;align-items:center}
+:root{
+--primary:#ff6b00;
+--primary-dark:#e55a00;
+--primary-light:#ff8533;
+--dark:#000000;
+--dark2:#0a0a0a;
+--dark3:#1a1a1a;
+--dark4:#2a2a2a;
+--gray:#888888;
+--light:#f5f5f5;
+--success:#00c853;
+--border:#333333;
+--gold:#d4af37;
+--text-primary:#ffffff;
+--text-secondary:#cccccc;
+--text-muted:#888888
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:var(--text-primary);line-height:1.6;background:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit;transition:color .3s}
+a:hover{color:var(--primary)}
+img{max-width:100%;height:auto;display:block}
+
+/* Header */
+header{background:rgba(0,0,0,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:1rem 0;position:sticky;top:0;z-index:100}
+.header-container{max-width:1400px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
 .logo{display:flex;align-items:center;gap:.5rem}
-.logo img{height:40px;width:auto}
-.logo-text{font-size:1.4rem;font-weight:800;color:var(--primary);letter-spacing:1px}
-.logo-text span{color:#fff;font-weight:300;font-size:.7rem;display:block;letter-spacing:2px;text-transform:uppercase}
-nav ul{display:flex;list-style:none;gap:1.5rem;align-items:center}
-nav a{color:#ccc;font-size:.85rem;font-weight:500;transition:color .3s;text-transform:uppercase;letter-spacing:.5px}
+.logo-icon{width:40px;height:40px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:1.2rem}
+.logo-text{font-size:1.5rem;font-weight:800;color:var(--primary);letter-spacing:1px}
+.logo-text span{color:var(--text-secondary);font-weight:300;font-size:.7rem;display:block;letter-spacing:2px;text-transform:uppercase}
+nav ul{display:flex;list-style:none;gap:2rem;align-items:center}
+nav a{color:var(--text-secondary);font-size:.85rem;font-weight:500;transition:color .3s;text-transform:uppercase;letter-spacing:.5px;position:relative}
+nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:width .3s}
 nav a:hover{color:var(--primary)}
-.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
-.hero{position:relative;min-height:500px;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%,rgba(255,107,53,.1) 0%,transparent 50%);pointer-events:none}
-.hero-content{position:relative;z-index:2;padding:3rem 1rem;max-width:700px}
-.hero-logo{margin-bottom:1.5rem}
-.hero-logo img{max-width:400px;width:100%;height:auto}
-.hero h1{font-size:2.8rem;margin-bottom:1rem;line-height:1.2;font-weight:300;letter-spacing:1px}
-.hero h1 strong{font-weight:700}
+nav a:hover::after{width:100%}
+.menu-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer}
+
+/* Hero */
+.hero{position:relative;min-height:600px;background:linear-gradient(135deg,#000000 0%,#0a0a0a 50%,#1a1a1a 100%);color:var(--text-primary);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%,rgba(255,107,0,.15) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(255,107,0,.1) 0%,transparent 40%);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:3rem 2rem;max-width:800px}
+.hero-logo{font-size:3rem;font-weight:800;color:var(--primary);letter-spacing:2px;margin-bottom:1rem;text-shadow:0 0 30px rgba(255,107,0,.5)}
+.hero h1{font-size:3.5rem;margin-bottom:1.5rem;line-height:1.1;font-weight:300;letter-spacing:1px}
+.hero h1 strong{font-weight:700;color:var(--primary)}
+.hero p{font-size:1.2rem;color:var(--text-secondary);margin-bottom:2rem}
 .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
-.btn{display:inline-block;padding:.875rem 2rem;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;border:none;cursor:pointer;transition:all .3s;font-size:1rem;text-align:center}
-.btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 4px 15px rgba(255,107,53,.4)}
+.btn{display:inline-block;padding:1rem 2.5rem;background:var(--primary);color:#fff;border-radius:50px;font-weight:600;border:none;cursor:pointer;transition:all .3s;font-size:1rem;text-align:center;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 15px rgba(255,107,0,.3)}
+.btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,0,.5)}
 .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.3)}
-.btn-outline:hover{border-color:var(--primary);background:rgba(255,107,53,.1)}
-.scroll-hint{color:rgba(255,255,255,.5);font-size:.85rem;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.trust-bar{background:var(--dark2);padding:1.2rem 0;border-bottom:1px solid #333}
-.trust-items{max-width:1200px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;text-align:center}
-.trust-item{color:#aaa;font-size:.85rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
-.trust-item strong{color:#fff}
-.section{max-width:1200px;margin:0 auto;padding:3rem 1rem}
-.section-header{text-align:center;margin-bottom:2.5rem}
-.section-header h2{font-size:1.8rem;color:var(--dark);margin-bottom:.5rem}
-.section-header p{color:var(--gray)}
-.section-dark{background:var(--light)}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
-.product-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
-.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1);border-color:var(--primary)}
-.product-badge{position:absolute;top:12px;left:12px;background:var(--primary);color:#fff;padding:.25rem .6rem;border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:.5px;z-index:2}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.scroll-hint{color:var(--text-muted);font-size:.9rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+
+/* Trust Bar */
+.trust-bar{background:var(--dark3);padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.trust-items{max-width:1400px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;text-align:center}
+.trust-item{color:var(--text-secondary);font-size:.9rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.trust-item strong{color:var(--text-primary);font-weight:600}
+
+/* Sections */
+.section{max-width:1400px;margin:0 auto;padding:4rem 2rem}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2.5rem;color:var(--text-primary);margin-bottom:.5rem;font-weight:700}
+.section-header h2 span{color:var(--primary)}
+.section-header p{color:var(--text-secondary);font-size:1.1rem}
+.section-dark{background:var(--dark2)}
+.section-title{font-size:1.8rem;color:var(--text-primary);margin:3rem 0 1.5rem;text-align:center;font-weight:600}
+
+/* Products Grid */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem}
+.product-card{background:var(--dark3);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(255,107,0,.2);border-color:var(--primary)}
+.product-badge{position:absolute;top:15px;left:15px;background:var(--primary);color:#fff;padding:.4rem .8rem;border-radius:20px;font-size:.75rem;font-weight:700;letter-spacing:.5px;z-index:2;text-transform:uppercase}
 .product-badge.badge-new{background:var(--success)}
 .product-badge.badge-gold{background:var(--gold);color:#000}
 .product-badge.badge-promo{background:#e74c3c}
-.product-image{width:100%;height:240px;object-fit:contain;background:#f5f5f5;padding:1rem}
-.product-info{padding:1rem}
-.product-name{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
-.product-specs{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
-.product-specs span{background:var(--light);color:var(--gray);padding:.15rem .4rem;border-radius:3px;font-size:.7rem}
-.product-price{margin-top:.5rem}
-.product-price .old-price{text-decoration:line-through;color:#999;font-size:.85rem}
-.product-price .current-price{font-size:1.2rem;font-weight:800;color:var(--primary)}
-.product-price .pix-label{font-size:.75rem;color:var(--gray)}
-.product-btn{display:block;width:100%;padding:.6rem;background:var(--dark);color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;margin-top:.75rem;transition:background .3s;font-size:.85rem}
-.product-btn:hover{background:var(--primary)}
-.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.product-image{width:100%;height:280px;object-fit:contain;background:var(--dark4);padding:1.5rem}
+.product-info{padding:1.5rem}
+.product-name{font-size:1.1rem;font-weight:700;margin-bottom:.75rem;color:var(--text-primary)}
+.product-specs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.product-specs span{background:var(--dark4);color:var(--text-secondary);padding:.3rem .6rem;border-radius:6px;font-size:.75rem;border:1px solid var(--border)}
+.product-price{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.product-price .old-price{text-decoration:line-through;color:var(--text-muted);font-size:.9rem}
+.product-price .current-price{font-size:1.5rem;font-weight:800;color:var(--primary);margin:.25rem 0}
+.product-price .pix-label{font-size:.8rem;color:var(--text-muted)}
+.product-btn{display:block;width:100%;padding:.8rem;background:transparent;color:var(--primary);border:2px solid var(--primary);border-radius:8px;font-weight:600;cursor:pointer;margin-top:1rem;transition:all .3s;font-size:.9rem;text-transform:uppercase;letter-spacing:.5px}
+.product-btn:hover{background:var(--primary);color:#fff}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center;padding:2rem;overflow-y:auto;backdrop-filter:blur(5px)}
 .modal-overlay.active{display:flex}
-.modal{background:#fff;border-radius:12px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
-.modal-close{position:absolute;top:1rem;right:1rem;background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center}
-.modal-close:hover{background:#f0f0f0}
-.modal-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem}
-.modal-gallery img{width:100%;border-radius:8px;background:#f5f5f5;padding:1rem}
-.modal-category{font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
-.modal-title{font-size:1.5rem;margin-bottom:1rem;color:var(--dark)}
-.modal-price-box{margin-bottom:1.5rem}
-.modal-price-box .old-price{text-decoration:line-through;color:#999;font-size:1rem}
-.modal-price-box .current-price{font-size:2rem;font-weight:800;color:var(--primary)}
-.modal-price-box .pix-label{font-size:.85rem;color:var(--gray)}
-.modal-description{color:var(--gray);margin-bottom:1.5rem;line-height:1.8}
+.modal{background:var(--dark3);border-radius:20px;max-width:1000px;width:100%;max-height:90vh;overflow-y:auto;position:relative;border:1px solid var(--border)}
+.modal-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--dark4);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;color:var(--text-primary);transition:all .3s}
+.modal-close:hover{background:var(--primary);border-color:var(--primary);transform:rotate(90deg)}
+.modal-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding:3rem}
+.modal-gallery img{width:100%;border-radius:12px;background:var(--dark4);padding:2rem}
+.modal-category{font-size:.8rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem}
+.modal-title{font-size:2rem;margin-bottom:1.5rem;color:var(--text-primary);font-weight:700}
+.modal-price-box{margin-bottom:2rem;padding:1.5rem;background:var(--dark4);border-radius:12px;border:1px solid var(--border)}
+.modal-price-box .old-price{text-decoration:line-through;color:var(--text-muted);font-size:1.1rem}
+.modal-price-box .current-price{font-size:2.5rem;font-weight:800;color:var(--primary);margin:.5rem 0}
+.modal-price-box .pix-label{font-size:.9rem;color:var(--text-muted)}
+.modal-description{color:var(--text-secondary);margin-bottom:2rem;line-height:1.8;font-size:1.05rem}
 .modal-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.modal-actions .btn{flex:1;min-width:140px}
-.checkout-modal .modal{max-width:600px}
-.checkout-content{padding:2rem}
-.checkout-content h2{font-size:1.3rem;margin-bottom:.5rem;color:var(--dark)}
-.checkout-product-info{background:var(--light);padding:1rem;border-radius:8px;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
-.checkout-product-info .name{font-weight:600;color:var(--dark)}
-.checkout-product-info .price{font-weight:800;color:var(--primary);font-size:1.1rem}
-.checkout-content h3{font-size:1rem;color:var(--dark);margin:1.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
-.form-group{margin-bottom:1rem}
-.form-group label{display:block;margin-bottom:.4rem;font-weight:500;color:var(--dark);font-size:.85rem}
-.form-group input,.form-group select{width:100%;padding:.7rem;border:1px solid var(--border);border-radius:6px;font-size:.95rem;transition:border-color .3s}
-.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary)}
+.modal-actions .btn{flex:1;min-width:160px}
+
+/* Checkout Modal */
+.checkout-modal .modal{max-width:700px}
+.checkout-content{padding:3rem}
+.checkout-content h2{font-size:1.8rem;margin-bottom:.5rem;color:var(--text-primary);font-weight:700}
+.checkout-content h2 span{color:var(--primary)}
+.checkout-product-info{background:var(--dark4);padding:1.5rem;border-radius:12px;margin-bottom:2rem;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)}
+.checkout-product-info .name{font-weight:600;color:var(--text-primary);font-size:1.1rem}
+.checkout-product-info .price{font-weight:800;color:var(--primary);font-size:1.3rem}
+.checkout-content h3{font-size:1.1rem;color:var(--text-primary);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--primary);font-weight:600}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;margin-bottom:.5rem;font-weight:500;color:var(--text-secondary);font-size:.9rem}
+.form-group input,.form-group select{width:100%;padding:.9rem;background:var(--dark4);border:1px solid var(--border);border-radius:8px;font-size:1rem;color:var(--text-primary);transition:all .3s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,107,0,.1)}
+.form-group input::placeholder{color:var(--text-muted)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.checkout-secure{text-align:center;margin-top:1rem;font-size:.8rem;color:var(--gray)}
-.checkout-secure strong{color:var(--dark)}
-.info-content{padding:2rem;max-height:80vh;overflow-y:auto}
-.info-content h2{font-size:1.4rem;margin-bottom:1rem;color:var(--dark)}
-.info-content h3{margin:1.5rem 0 .5rem;color:var(--dark);font-size:1.1rem}
-.info-content p,.info-content li{margin-bottom:.75rem;color:#555;line-height:1.7}
-.info-content ul{padding-left:1.5rem}
-.info-content .highlight{background:var(--light);padding:1rem;border-radius:8px;border-left:4px solid var(--primary);margin:1rem 0}
-footer{background:var(--dark);color:#fff;padding:3rem 1rem 1rem;margin-top:3rem}
-.footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-bottom:2rem}
-.footer-section h3{color:var(--primary);margin-bottom:1rem;font-size:1rem;text-transform:uppercase;letter-spacing:1px}
-.footer-section p,.footer-section a{color:#aaa;font-size:.9rem;display:block;padding:.2rem 0}
+.checkout-secure{text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-muted)}
+.checkout-secure strong{color:var(--primary)}
+
+/* Info Modals */
+.info-content{padding:3rem;max-height:80vh;overflow-y:auto}
+.info-content h2{font-size:2rem;margin-bottom:1.5rem;color:var(--text-primary);font-weight:700}
+.info-content h2 span{color:var(--primary)}
+.info-content h3{margin:2rem 0 1rem;color:var(--text-primary);font-size:1.3rem;font-weight:600}
+.info-content p,.info-content li{margin-bottom:1rem;color:var(--text-secondary);line-height:1.8;font-size:1rem}
+.info-content ul{padding-left:2rem}
+.info-content .highlight{background:var(--dark4);padding:1.5rem;border-radius:12px;border-left:4px solid var(--primary);margin:1.5rem 0}
+.info-content .highlight strong{color:var(--primary)}
+
+/* Footer */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:4rem 2rem 2rem;margin-top:4rem}
+.footer-content{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem;margin-bottom:3rem}
+.footer-section h3{color:var(--primary);margin-bottom:1.5rem;font-size:1.1rem;text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.footer-section p,.footer-section a{color:var(--text-secondary);font-size:.95rem;display:block;padding:.3rem 0;transition:color .3s}
 .footer-section a:hover{color:var(--primary)}
 .footer-section ul{list-style:none}
-.footer-logo{margin-bottom:1rem}
-.footer-logo img{max-width:180px;height:auto}
-.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid #333;color:#666;font-size:.8rem}
-.loading{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .8s linear infinite;margin-right:.5rem;vertical-align:middle}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:var(--text-muted);font-size:.85rem}
+
+/* Loading */
+.loading{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .8s linear infinite;margin-right:.5rem;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Responsive */
 @media(max-width:768px){
 .menu-toggle{display:block}
-nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--dark);flex-direction:column;padding:1rem;gap:.75rem;border-top:1px solid #333}
+nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--dark);flex-direction:column;padding:2rem;gap:1rem;border-top:1px solid var(--border)}
 nav ul.active{display:flex}
-.hero h1{font-size:1.8rem}
-.hero-logo img{max-width:280px}
-.modal-body{grid-template-columns:1fr;padding:1rem}
+.hero h1{font-size:2rem}
+.hero-logo{font-size:2rem}
+.modal-body{grid-template-columns:1fr;padding:2rem;gap:2rem}
 .form-row{grid-template-columns:1fr}
-.products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
-.product-image{height:160px}
+.products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
+.product-image{height:200px}
 .modal-actions{flex-direction:column}
-.logo-text{font-size:1.1rem}
-.logo-text span{font-size:.6rem}
+.section{padding:3rem 1rem}
+.section-header h2{font-size:1.8rem}
+.header-container{padding:0 1rem}
+.trust-items{padding:0 1rem}
 }
 </style>
 </head>
@@ -141,7 +188,7 @@ nav ul.active{display:flex}
 <header>
 <div class="header-container">
 <a href="/" class="logo">
-<img src="logo-vertical.png" alt="A Bugiganga">
+<div class="logo-icon">a</div>
 <div class="logo-text">a bugiganga<span>SMARTWATCHES PARA O SEU TEMPO</span></div>
 </a>
 <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
@@ -162,10 +209,9 @@ nav ul.active{display:flex}
 
 <section class="hero" id="inicio">
 <div class="hero-content">
-<div class="hero-logo">
-<img src="logo-horizontal.png" alt="A Bugiganga - Smartwatches para o Seu Tempo">
-</div>
+<div class="hero-logo">a bugiganga</div>
 <h1>Smartwatches para o <strong>seu tempo</strong></h1>
+<p>Tecnologia premium com qualidade excepcional. Envio para todo o Brasil.</p>
 <div class="hero-buttons">
 <a href="#smartwatches" class="btn">Ver Coleção</a>
 <a href="#promocoes" class="btn btn-outline">Promoções</a>
@@ -178,14 +224,14 @@ nav ul.active{display:flex}
 <div class="trust-items">
 <div class="trust-item">📦 <strong>Envio para todo o Brasil</strong></div>
 <div class="trust-item">🛡️ <strong>Garantia de 1 Ano</strong></div>
-<div class="trust-item">💳 <strong>Pagamento via PIX</strong></div>
-<div class="trust-item"> <strong>Compra 100% Segura</strong></div>
+<div class="trust-item"> <strong>Pagamento via PIX</strong></div>
+<div class="trust-item">🔒 <strong>Compra 100% Segura</strong></div>
 </div>
 </div>
 
 <section class="section" id="smartwatches">
 <div class="section-header">
-<h2>⌚ Linha Completa de Smartwatches</h2>
+<h2> Linha Completa de <span>Smartwatches</span></h2>
 <p>Escolha o smartwatch ideal para seu estilo de vida</p>
 </div>
 <div class="products-grid" id="grid-smartwatches"></div>
@@ -193,20 +239,20 @@ nav ul.active{display:flex}
 
 <section class="section section-dark" id="pulseiras">
 <div class="section-header">
-<h2> Pulseiras Inteligentes</h2>
+<h2>📿 Pulseiras <span>Inteligentes</span></h2>
 <p>Acompanhe sua saúde e atividade física com estilo</p>
 </div>
-<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">✨ Pulseiras Premium & Gold</h3>
+<h3 class="section-title">✨ Pulseiras Premium & Gold</h3>
 <div class="products-grid" id="grid-premium" style="margin-bottom:3rem"></div>
-<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">👑 Pulseiras VIP</h3>
+<h3 class="section-title">👑 Pulseiras VIP</h3>
 <div class="products-grid" id="grid-vip" style="margin-bottom:3rem"></div>
-<h3 style="text-align:center;margin-bottom:1.5rem;color:var(--dark)">👜 Pulseiras em Couro</h3>
+<h3 class="section-title">👜 Pulseiras em Couro</h3>
 <div class="products-grid" id="grid-couro"></div>
 </section>
 
 <section class="section" id="fones">
 <div class="section-header">
-<h2>🎧 Fones de Ouvido</h2>
+<h2> Fones de <span>Ouvido</span></h2>
 <p>Som de qualidade para acompanhar sua rotina</p>
 </div>
 <div class="products-grid" id="grid-fones"></div>
@@ -214,7 +260,7 @@ nav ul.active{display:flex}
 
 <section class="section section-dark" id="promocoes">
 <div class="section-header">
-<h2>🔥 Promoções Imperdíveis</h2>
+<h2>🔥 Promoções <span>Imperdíveis</span></h2>
 <p>Descontos exclusivos de 50% via PIX. Aproveite antes que acabe!</p>
 </div>
 <div class="products-grid" id="grid-promos"></div>
@@ -223,18 +269,16 @@ nav ul.active{display:flex}
 <footer id="contato">
 <div class="footer-content">
 <div class="footer-section">
-<div class="footer-logo">
-<img src="logo-horizontal.png" alt="A Bugiganga">
-</div>
+<h3>A Bugiganga</h3>
 <p>Smartwatches para o seu tempo. Tecnologia premium com qualidade excepcional.</p>
 </div>
 <div class="footer-section">
 <h3>Categorias</h3>
 <ul>
-<li><a href="#smartwatches">⌚ Smartwatches</a></li>
+<li><a href="#smartwatches"> Smartwatches</a></li>
 <li><a href="#pulseiras">📿 Pulseiras</a></li>
 <li><a href="#fones">🎧 Fones</a></li>
-<li><a href="#promocoes">🔥 Promoções</a></li>
+<li><a href="#promocoes"> Promoções</a></li>
 </ul>
 </div>
 <div class="footer-section">
@@ -263,7 +307,7 @@ nav ul.active{display:flex}
 <div class="modal">
 <button class="modal-close" onclick="closeModal('modal-quem-somos')">×</button>
 <div class="info-content">
-<h2>Sobre a A Bugiganga</h2>
+<h2>Sobre a <span>A Bugiganga</span></h2>
 <p>A A Bugiganga nasceu em Brasília-DF com uma missão clara: democratizar o acesso à tecnologia vestível de qualidade no Brasil. Somos uma empresa especializada em smartwatches da linha Wearzone, oferecendo produtos que combinam design, funcionalidade e preço justo.</p>
 <h3>Nossa Missão</h3>
 <p>Proporcionar aos nossos clientes dispositivos que transformam a forma como eles interagem com o tempo, a saúde e a tecnologia no dia a dia.</p>
@@ -287,7 +331,7 @@ nav ul.active{display:flex}
 <div class="modal">
 <button class="modal-close" onclick="closeModal('modal-garantia')">×</button>
 <div class="info-content">
-<h2>🛡️ Política de Garantia</h2>
+<h2>️ Política de <span>Garantia</span></h2>
 <h3>Garantia de 1 Ano</h3>
 <p>Todos os smartwatches vendidos pela A Bugiganga possuem garantia de 1 ano contra defeitos de fabricação.</p>
 <h3>O que a garantia cobre?</h3>
@@ -309,7 +353,7 @@ nav ul.active{display:flex}
 <div class="modal">
 <button class="modal-close" onclick="closeModal('modal-privacidade')">×</button>
 <div class="info-content">
-<h2>🔒 Política de Privacidade</h2>
+<h2>🔒 Política de <span>Privacidade</span></h2>
 <p><em>Última atualização: Julho de 2026</em></p>
 <p>A A Bugiganga respeita sua privacidade em conformidade com a LGPD (Lei 13.709/2018).</p>
 <h3>1. Dados que Coletamos</h3>
@@ -336,7 +380,7 @@ nav ul.active{display:flex}
 <div class="modal">
 <button class="modal-close" onclick="closeModal('modal-termos')">×</button>
 <div class="info-content">
-<h2>📜 Termos de Uso</h2>
+<h2>📜 Termos de <span>Uso</span></h2>
 <p>Ao utilizar o site da A Bugiganga, você concorda com estes termos.</p>
 <h3>1. Produtos e Preços</h3>
 <p>Preços e descrições podem ser alterados sem aviso prévio. Erros serão corrigidos antes da confirmação do pedido.</p>
@@ -367,7 +411,7 @@ nav ul.active{display:flex}
 </div>
 <p class="modal-description" id="detail-description"></p>
 <div class="modal-actions">
-<button class="btn" onclick="openCheckout()">🛒 Comprar Agora</button>
+<button class="btn" onclick="openCheckout()"> Comprar Agora</button>
 </div>
 </div>
 </div>
@@ -378,7 +422,7 @@ nav ul.active{display:flex}
 <div class="modal">
 <button class="modal-close" onclick="closeModal('modal-checkout')">×</button>
 <div class="checkout-content">
-<h2>Finalizar Compra</h2>
+<h2>Finalizar <span>Compra</span></h2>
 <div class="checkout-product-info">
 <span class="name" id="checkout-product-name"></span>
 <span class="price" id="checkout-product-price"></span>
@@ -441,7 +485,7 @@ nav ul.active{display:flex}
 <label for="c-complement">Complemento</label>
 <input type="text" id="c-complement" placeholder="Apto, bloco, etc.">
 </div>
-<button type="submit" class="btn btn-checkout" style="width:100%;margin-top:1rem;padding:1rem;font-size:1.05rem">
+<button type="submit" class="btn btn-checkout" style="width:100%;margin-top:1.5rem;padding:1.2rem;font-size:1.1rem">
 🔒 Ir para Pagamento Seguro
 </button>
 <p class="checkout-secure">
@@ -455,18 +499,18 @@ Aceita PIX e cartão de crédito em até 12x.
 
 <script>
 const productsDB = [
-{id:1,cat:"smartwatches",badge:"BÁSICO",name:"HORIZON LITE+",image:"https://wearzonebrasil.com.br/cdn/shop/files/3_1_e5e6aef8-fa22-4de5-9ce9-a0e3db944bca_1000x.png?v=1744054952",oldPrice:599.00,price:409.00,specs:["💧 1ATM"," Notificações","🔋 5 dias"],description:"Smartwatch básico e funcional com notificações, resistência à água 1ATM e bateria de 5 dias. Ideal para quem busca praticidade no dia a dia."},
+{id:1,cat:"smartwatches",badge:"BÁSICO",name:"HORIZON LITE+",image:"https://wearzonebrasil.com.br/cdn/shop/files/3_1_e5e6aef8-fa22-4de5-9ce9-a0e3db944bca_1000x.png?v=1744054952",oldPrice:599.00,price:409.00,specs:["💧 1ATM","📱 Notificações","🔋 5 dias"],description:"Smartwatch básico e funcional com notificações, resistência à água 1ATM e bateria de 5 dias. Ideal para quem busca praticidade no dia a dia."},
 {id:2,cat:"smartwatches",badge:"DESIGN",name:"FLARE",image:"https://http2.mlstatic.com/D_NQ_NP_2X_786985-MLA113159746349_062026-F.webp",oldPrice:789.99,price:549.90,specs:["AMOLED Cores","💧 5ATM","🔋 10 dias"],description:"Smartwatch com tela AMOLED colorida, resistência 5ATM e bateria de 10 dias. Design elegante para todas as ocasiões."},
 {id:3,cat:"smartwatches",badge:"RESISTENTE",name:"BRAVE",image:"https://http2.mlstatic.com/D_NQ_NP_2X_944428-MLA98828367660_112025-F.webp",oldPrice:789.99,price:549.90,specs:["💪 Robusto","💧 5ATM","🏃 Esportes","🔋 10 dias"],description:"Smartwatch robusto com modos esportivos avançados, resistência 5ATM e bateria de longa duração de 10 dias."},
-{id:4,cat:"smartwatches",badge:"PREMIUM",name:"HORIZON TITAN",image:"https://http2.mlstatic.com/D_NQ_NP_2X_808543-MLB111294723727_052026-F.webp",oldPrice:769.99,price:579.90,specs:["🛰️ GPS","️ Titânio","💧 5ATM","🔋 2 dias"],description:"Smartwatch premium com caixa em titânio, GPS integrado e resistência 5ATM. Para quem exige o melhor."},
+{id:4,cat:"smartwatches",badge:"PREMIUM",name:"HORIZON TITAN",image:"https://http2.mlstatic.com/D_NQ_NP_2X_808543-MLB111294723727_052026-F.webp",oldPrice:769.99,price:579.90,specs:["🛰️ GPS","⚙️ Titânio","💧 5ATM","🔋 2 dias"],description:"Smartwatch premium com caixa em titânio, GPS integrado e resistência 5ATM. Para quem exige o melhor."},
 {id:5,cat:"smartwatches",badge:"FITNESS",name:"PULSE",image:"https://i.imgur.com/ub4DTL9.jpg",oldPrice:289.99,price:249.99,specs:["❤️ Cardíaco","+80 esportes","💧 3ATM","🔋 7 dias"],description:"Smartwatch fitness com monitoramento cardíaco e mais de 80 modos esportivos. Resistência 3ATM e bateria de 7 dias."},
-{id:6,cat:"smartwatches",badge:"SIMPLES",name:"EASY",image:"https://i.imgur.com/L0gkkTw.jpg",oldPrice:289.99,price:249.99,specs:["👆 Fácil","Básico","💧 1ATM"," 7 dias"],description:"Smartwatch simples e fácil de usar. Interface intuitiva, resistência 1ATM e bateria de 7 dias."},
+{id:6,cat:"smartwatches",badge:"SIMPLES",name:"EASY",image:"https://i.imgur.com/L0gkkTw.jpg",oldPrice:289.99,price:249.99,specs:["👆 Fácil","Básico","💧 1ATM","🔋 7 dias"],description:"Smartwatch simples e fácil de usar. Interface intuitiva, resistência 1ATM e bateria de 7 dias."},
 {id:7,cat:"smartwatches",badge:"ESPORTE",name:"ACTION",image:"https://i.imgur.com/HoXWUeX.jpg",oldPrice:589.90,price:399.00,specs:["🏄 Radical","💧 3ATM","🛰️ GPS","🔋 7 dias"],description:"Smartwatch esportivo para atividades radicais. GPS integrado, resistência 3ATM e bateria de 7 dias."},
 {id:8,cat:"smartwatches",badge:"FEMININO",name:"LIFE",image:"https://i.imgur.com/OhUGDSn.jpg",oldPrice:389.99,price:299.99,specs:["💧 1ATM","AMOLED","🔋 Longa","🌸 Rosa"],description:"Smartwatch feminino com tela AMOLED, design rosa elegante e bateria de longa duração."},
 {id:9,cat:"smartwatches",badge:"MILITAR",name:"FÊNIX",image:"https://i.imgur.com/0EruJJt.jpg",oldPrice:479.99,price:298.99,specs:["🪖 Militar","💧 10ATM","🏔️ Outdoor","🔋 7 dias"],description:"Smartwatch militar com resistência 10ATM, ideal para atividades outdoor. Bateria de 7 dias e construção robusta."},
 {id:10,cat:"smartwatches",badge:"TECH",name:"KRON",image:"https://i.imgur.com/Z6hQlKM.jpg",oldPrice:479.99,price:398.00,specs:["⚙️ Alumínio","AMOLED","💧 10m","🔋 3 dias"],description:"Smartwatch tech com corpo em alumínio, tela AMOLED e resistência à água de 10 metros."},
 {id:11,cat:"premium",badge:"AÇO",name:"Pulseira Aço de Luxo",image:"https://thumbnails.meuspedidos.com.br/unVl_mCfu6g9UMrVg9jedVWY-c0=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/fb0224a0-ac21-11f0-b359-babb381ff2a0.jpg",price:89.99,specs:["38mm/40mm/41mm","Luxo"],description:"Pulseira de aço de luxo compatível com smartwatches de 38mm, 40mm e 41mm. Acabamento premium."},
-{id:12,cat:"premium",badge:"ELOS",name:"Pulseira de Aço Elos Pino",image:"https://thumbnails.meuspedidos.com.br/GQNR6uQQ89oRRoBAKVoXMVtFUGM=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/74105368-4adc-11f1-bc22-96aa9bfa9a9b.png",price:99.99,specs:["18mm/22mm"," Robusta"],description:"Pulseira de aço com elos pino, robusta e durável. Disponível em 18mm e 22mm."},
+{id:12,cat:"premium",badge:"ELOS",name:"Pulseira de Aço Elos Pino",image:"https://thumbnails.meuspedidos.com.br/GQNR6uQQ89oRRoBAKVoXMVtFUGM=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/74105368-4adc-11f1-bc22-96aa9bfa9a9b.png",price:99.99,specs:["18mm/22mm","🔗 Robusta"],description:"Pulseira de aço com elos pino, robusta e durável. Disponível em 18mm e 22mm."},
 {id:13,cat:"premium",badge:"PÉROLA",name:"Pulseira de Luxo Pérola",image:"https://arquivos.mercos.com/media/imagem_produto/421733/b545c7ec-adab-11f0-969e-46c36c860b59.jpg",price:89.99,specs:["42mm/44mm/45mm/49mm","✨ Elegante"],description:"Pulseira de luxo com acabamento pérola, elegante e sofisticada para smartwatches de 42mm a 49mm."},
 {id:14,cat:"premium",badge:"🥇 GOLD",badgeClass:"badge-gold",name:"Pulseira Milanesa Loop",image:"https://thumbnails.meuspedidos.com.br/W2gnADS1dzzRocU5kBHZ_h4DmpI=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/bd350de6-ae7d-11f0-aa6c-4eb9c1f8f5a9.jpg",price:149.99,specs:["42mm/44mm/45mm/49mm","Ajustável","Gold"],description:"Pulseira Milanesa Loop com acabamento dourado, ajustável e elegante. Compatível com 42mm a 49mm."},
 {id:15,cat:"vip",badge:"SILICONE",name:"Pulseira Silicone Elo Magnético Ocean",image:"https://thumbnails.meuspedidos.com.br/pXbU5e8XmManOG2E720xkz51-Ac=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/0b3b8b6c-b33f-11f0-8134-eafaf43df6ad.jpg",price:48.99,specs:["38mm/40mm/41mm","Magnética"],description:"Pulseira de silicone com fecho magnético, tema ocean. Leve e confortável para uso diário."},
@@ -477,12 +521,12 @@ const productsDB = [
 {id:20,cat:"vip",badge:"7 ELOS",name:"Pulseira de Aço 7 Elos",image:"https://thumbnails.meuspedidos.com.br/S6_GBszwaw2ro2wi1YfhrBlM-Po=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/b807d5ce-5e90-11f1-b2c8-666486c5a5ed.jpg",price:49.99,specs:["38mm/41mm/42mm/49mm","⛓️ Clássica"],description:"Pulseira de aço com 7 elos, design clássico e atemporal."},
 {id:21,cat:"couro",badge:"SLIM",name:"Pulseira de Couro Slim",image:"https://thumbnails.meuspedidos.com.br/ddZepZpldfx6FI4iowwRymPXloI=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/0ded30de-56ac-11f1-99fb-7e873a1f9b93.png",price:39.00,specs:["38mm/40mm/41mm","Elegante"],description:"Pulseira de couro slim, fina e elegante para smartwatches compactos."},
 {id:22,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra Pino",image:"https://thumbnails.meuspedidos.com.br/Q6HrZOTwlD6HcFM6_SkQtNDEEBA=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/528060fa-adaa-11f0-9fa0-027dae3dbb17.png",price:45.99,specs:["22mm","🎯 Conforto"],description:"Pulseira de couro microfibra com fecho pino. Confortável e durável em 22mm."},
-{id:23,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra",image:"https://thumbnails.meuspedidos.com.br/btWjWV-FcU2NsZW7cV-Fyqw3dWM=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/f215de52-ada9-11f0-a0d8-429b3c3166ba.png",price:44.99,specs:["42mm/44mm/45mm/47mm/49mm","💼 Profissional"],description:"Pulseira de couro microfibra para smartwatches grandes. Visual profissional e sofisticado."},
+{id:23,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra",image:"https://thumbnails.meuspedidos.com.br/btWjWV-FcU2NsZW7cV-Fyqw3dWM=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/f215de52-ada9-11f0-a0d8-429b3c3166ba.png",price:44.99,specs:["42mm/44mm/45mm/47mm/49mm"," Profissional"],description:"Pulseira de couro microfibra para smartwatches grandes. Visual profissional e sofisticado."},
 {id:24,cat:"couro",badge:"MICROFIBRA",name:"Pulseira de Couro Microfibra",image:"https://thumbnails.meuspedidos.com.br/btWjWV-FcU2NsZW7cV-Fyqw3dWM=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/f215de52-ada9-11f0-a0d8-429b3c3166ba.png",price:25.00,specs:["38mm/40mm/41mm","✨ Compacta"],description:"Pulseira de couro microfibra compacta para smartwatches menores. Leve e prática."},
 {id:25,cat:"couro",badge:"FIT SLIM",name:"Pulseira de Couro Fit Slim",image:"https://thumbnails.meuspedidos.com.br/V8ECFpAzx1xLqVbBpPa7VLSa6Sk=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/15567e1a-5923-11f1-881d-aa4d6a64195d.png",price:25.00,specs:["38mm/40mm/41mm","🏃 Esportiva"],description:"Pulseira de couro fit slim com design esportivo. Ideal para o dia a dia ativo."},
 {id:26,cat:"couro",badge:"CLÁSSICA",name:"Pulseira De Couro",image:"https://thumbnails.meuspedidos.com.br/jDmZntHSV9GbwemTjxLDihZqhnA=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/a853f9f8-ada8-11f0-909e-be33e4bc9324.jpg",price:27.00,specs:["42mm/44mm/45mm/47mm/49mm","Clássica"],description:"Pulseira de couro clássica para smartwatches grandes. Design atemporal e versátil."},
 {id:27,cat:"couro",badge:"LISO",name:"Pulseira Couro Liso",image:"https://thumbnails.meuspedidos.com.br/Yon2BDo_tRYaYbzjqzy2E2XMp4s=/fit-in/400x256/https://arquivos.mercos.com/media/imagem_produto/421733/095d4404-ac26-11f0-80ab-82dc3cbd924a.jpeg",price:24.99,specs:["22mm","Minimalista"],description:"Pulseira de couro liso com design minimalista em 22mm. Simplicidade e elegância."},
-{id:28,cat:"fones",badge:"HEADSET",name:"HEADSET WZ08",image:"https://http2.mlstatic.com/D_Q_NP_2X_824220-MLB107758444996_032026-R-fone-headset-wearzone-wz08-bluetooth-sem-fio.webp",oldPrice:489.99,price:349.99,specs:["🎮 Gamer","🎧 ANC -43dB","🔋 60h"],description:"Headset gamer com cancelamento de ruído ativo de -43dB e bateria de 60 horas. Som imersivo para jogos e música."},
+{id:28,cat:"fones",badge:"HEADSET",name:"HEADSET WZ08",image:"https://http2.mlstatic.com/D_Q_NP_2X_824220-MLB107758444996_032026-R-fone-headset-wearzone-wz08-bluetooth-sem-fio.webp",oldPrice:489.99,price:349.99,specs:[" Gamer","🎧 ANC -43dB","🔋 60h"],description:"Headset gamer com cancelamento de ruído ativo de -43dB e bateria de 60 horas. Som imersivo para jogos e música."},
 {id:29,cat:"fones",badge:"TWS",name:"TWS WZ06",image:"https://thumbnails.meuspedidos.com.br/mPk53Z87WKq1sRpQfHwVXZ721hQ=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/09d629d6-b4d3-11f0-ae3a-e22d5eb8642b.jpg",oldPrice:259.99,price:189.99,specs:["🔊 Bluetooth","ANC -28dB","🔋 7h"],description:"Fone TWS Bluetooth com cancelamento de ruído -28dB e 7 horas de bateria. Compacto e potente."},
 {id:30,cat:"fones",badge:"BUDS",name:"ZONE BUDS 01",image:"https://http2.mlstatic.com/D_NQ_NP_2X_629074-MLB113102871096_072026-F.webp",oldPrice:189.99,price:149.99,specs:["In-Ear","🔋 32h total","IPX4"],description:"Fone in-ear com 32 horas de bateria total (estojo + fones) e resistência IPX4."},
 {id:31,cat:"promos",badge:"50% OFF",badgeClass:"badge-promo",name:"Watch 29 Pro - Microwear",image:"https://thumbnails.meuspedidos.com.br/SgPIS1wOvXfVGLxrb3U36ZLgb1o=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/cea87ade-b4f6-11f0-905c-ba8a7e4b6c21.jpeg",oldPrice:230.00,price:115.00,specs:["48mm","Slim","🤖 ChatGPT","1GB"],description:"Smartwatch Microwear Watch 29 Pro com 48mm, design slim, integração com ChatGPT e 1GB de armazenamento. 50% de desconto!"},
@@ -498,7 +542,7 @@ function renderProducts(containerId, category) {
         const bc = p.badgeClass || '';
         card.innerHTML = `
             ${p.badge ? `<span class="product-badge ${bc}">${p.badge}</span>` : ''}
-            <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" onerror="this.style.background='#eee'">
+            <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy" onerror="this.style.background='#2a2a2a'">
             <div class="product-info">
                 <h3 class="product-name">${p.name}</h3>
                 <div class="product-specs">${p.specs.map(s=>`<span>${s}</span>`).join('')}</div>
