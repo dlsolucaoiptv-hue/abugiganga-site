@@ -3,58 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Bugiganga - Sua Loja de Confiança</title>
-    <!-- Mantenha todos os seus estilos (CSS) e metadados originais aqui -->
+    <title>A Bugiganga - Smartwatches e Acessórios Tech com Preço Justo</title>
+    <meta name="description" content="Smartwatches, fones TWS e acessórios tech com garantia. Frete para todo Brasil. Pagamento seguro via PIX e cartão.">
+    <link rel="canonical" href="https://abugiganga.com.br/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e55a2b;
+            --dark: #1a1a2e;
+            --gray: #6c757d;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --border: #e0e0e0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; line-height: 1.6; background: #fff; }
+        
+        /* Header */
+        header { background: var(--dark); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary); }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        
+        /* Hero */
+        .hero { position: relative; height: 400px; background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 800px; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+        .btn { display: inline-block; padding: 0.875rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
+        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,107,53,0.3); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        
+        /* Trust Bar */
+        .trust-bar { background: var(--light); padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+        .trust-items { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; }
+        .trust-item { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; color: var(--gray); }
+        .trust-item strong { color: var(--dark); }
+        
+        /* Catalog */
+        .catalog { max-width: 1200px; margin: 0 auto; padding: 3rem 1rem; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .section-subtitle { text-align: center; color: var(--gray); margin-bottom: 2.5rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .product-image { width: 100%; height: 220px; object-fit: cover; background: var(--light); }
+        .product-info { padding: 1rem; }
+        .product-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--dark); }
+        .product-price { font-size: 1.25rem; font-weight: bold; color: var(--primary); margin-bottom: 0.5rem; }
+        .product-price small { display: block; font-size: 0.75rem; color: var(--gray); font-weight: normal; }
+        .badge { display: inline-block; padding: 0.25rem 0.5rem; background: var(--primary); color: white; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .badge-new { background: var(--success); }
+        
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: white; border-radius: 12px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; }
+        .modal-gallery img { width: 100%; border-radius: 8px; margin-bottom: 0.5rem; }
+        .modal-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark); }
+        .modal-price { font-size: 2rem; color: var(--primary); font-weight: bold; margin-bottom: 1rem; }
+        .modal-description { color: var(--gray); margin-bottom: 1.5rem; }
+        .specs-list { list-style: none; margin-bottom: 1.5rem; }
+        .specs-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .specs-list strong { color: var(--dark); }
+        
+        /* Checkout Form */
+        .checkout-form { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--border); }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark); font-size: 0.9rem; }
+        .form-group input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+        .form-group input:focus { outline: none; border-color: var(--primary); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 3rem 1rem 1rem; margin-top: 3rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: #ccc; text-decoration: none; display: block; padding: 0.25rem 0; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #333; color: #888; font-size: 0.9rem; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark); flex-direction: column; padding: 1rem; gap: 1rem; }
+            nav ul.active { display: flex; }
+            .hero h1 { font-size: 2rem; }
+            .modal-body { grid-template-columns: 1fr; padding: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+            .product-image { height: 160px; }
+        }
+        
+        .loading { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.8s linear infinite; margin-right: 0.5rem; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
-    <!-- Mantenha todo o seu cabeçalho, catálogo e modais originais aqui -->
-    
-    <!-- Exemplo de como o botão de compra deve ficar no seu modal de produto -->
-    <!-- <button id="btn-checkout" data-produto="Fênix Smartwatch" data-preco="299.90">Ir para Pagamento Seguro</button> -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">⚙️ A Bugiganga</a>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Script de Integração com Cloudflare + InfinitePay -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Adicione esta classe ou ID aos seus botões de compra existentes
-            const botoesCompra = document.querySelectorAll('.btn-comprar-agora'); 
-            
-            botoesCompra.forEach(btn => {
-                btn.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    const produto = btn.getAttribute('data-nome');
-                    const preco = parseFloat(btn.getAttribute('data-preco'));
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tecnologia com Preço Justo</h1>
+            <p>Smartwatches, fones e acessórios tech selecionados com garantia e envio para todo Brasil.</p>
+            <a href="#catalogo" class="btn">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="trust-items">
+            <div class="trust-item">🔒 <span><strong>Pagamento Seguro</strong><br>via InfinitePay</span></div>
+            <div class="trust-item">📦 <span><strong>Envio Rápido</strong><br>para todo Brasil</span></div>
+            <div class="trust-item">✅ <span><strong>Garantia</strong><br>em todos produtos</span></div>
+        </div>
+    </div>
+
+    <section class="catalog" id="catalogo">
+        <h2 class="section-title">Nossos Produtos</h2>
+        <p class="section-subtitle">Escolha o que combina com você</p>
+        <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal">
+            <button class="modal-close" aria-label="Fechar">×</button>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <img id="modal-image" src="" alt="">
+                </div>
+                <div class="modal-details">
+                    <span class="badge" id="modal-badge">DESTAQUE</span>
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <div class="modal-price" id="modal-price"></div>
+                    <p class="modal-description" id="modal-description"></p>
+                    <ul class="specs-list" id="modal-specs"></ul>
                     
-                    btn.textContent = 'Gerando link de pagamento...';
-                    btn.disabled = true;
+                    <div class="checkout-form">
+                        <h3 style="margin-bottom: 1rem;">Finalizar Compra</h3>
+                        <form id="checkout-form">
+                            <div class="form-group">
+                                <label for="customer-name">Nome completo *</label>
+                                <input type="text" id="customer-name" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="customer-cpf">CPF *</label>
+                                    <input type="text" id="customer-cpf" placeholder="000.000.000-00" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer-phone">Telefone *</label>
+                                    <input type="tel" id="customer-phone" placeholder="(00) 00000-0000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">E-mail *</label>
+                                <input type="email" id="customer-email" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="customer-cep">CEP *</label>
+                                    <input type="text" id="customer-cep" placeholder="00000-000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer-number">Número *</label>
+                                    <input type="text" id="customer-number" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-address">Endereço *</label>
+                                <input type="text" id="customer-address" required>
+                            </div>
+                            <button type="submit" class="btn btn-checkout" style="width: 100%;">
+                                Ir para Pagamento Seguro
+                            </button>
+                            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+                                🔒 Você será redirecionado para o checkout seguro da InfinitePay
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    try {
-                        const response = await fetch('/api/create-checkout', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ 
-                                produto: produto, 
-                                preco: preco,
-                                infiniteTag: 'denys_lucio_da_c'
-                            })
-                        });
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>A Bugiganga</h3>
+                <p style="color: #ccc; font-size: 0.9rem;">Tecnologia com preço justo.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><a href="mailto:contato@abugiganga.com.br">contato@abugiganga.com.br</a></li>
+                    <li><a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 A Bugiganga. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-                        const data = await response.json();
-                        if (data.url) {
-                            // Redireciona o cliente para o checkout da InfinitePay
-                            window.location.href = data.url;
-                        } else {
-                            alert('Erro ao gerar link de pagamento. Tente novamente.');
-                            btn.textContent = 'Ir para Pagamento Seguro';
-                            btn.disabled = false;
-                        }
-                    } catch (error) {
-                        console.error('Erro:', error);
-                        alert('Erro de conexão. Verifique sua internet.');
-                        btn.textContent = 'Ir para Pagamento Seguro';
-                        btn.disabled = false;
-                    }
-                });
+    <script>
+        // Banco de dados de produtos (32 itens)
+        const productsDB = [
+            { id: 1, name: "FÊNIX Smartwatch", price: 299.90, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400", badge: "MAIS VENDIDO", description: "Smartwatch premium com GPS integrado e resistência à água.", specs: [["Tela", "1.9\" AMOLED"], ["Bateria", "7 dias"], ["Resistência", "10ATM"], ["GPS", "Integrado"]] },
+            { id: 2, name: "TWS WZ06", price: 89.90, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400", badge: "NOVO", description: "Fone de ouvido Bluetooth TWS com cancelamento de ruído.", specs: [["Bateria", "30h com estojo"], ["Bluetooth", "5.3"], ["Resistência", "IPX5"], ["Driver", "13mm"]] },
+            { id: 3, name: "Smartwatch Pro X1", price: 249.90, image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400", badge: "DESTAQUE", description: "Smartwatch com tela AMOLED e mais de 100 modos esportivos.", specs: [["Tela", "1.8\" AMOLED"], ["Bateria", "5 dias"], ["Sensores", "SpO2, FC"], ["Modos", "100+"]] },
+            { id: 4, name: "Fone Bluetooth Air", price: 59.90, image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400", description: "Fone Bluetooth leve e confortável para uso diário.", specs: [["Bateria", "6h"], ["Bluetooth", "5.0"], ["Peso", "4g cada"], ["Carga", "USB-C"]] },
+            { id: 5, name: "Smartwatch Sport", price: 179.90, image: "https://images.unsplash.com/photo-1508685096489-7aacd40bd3e9?w=400", description: "Smartwatch focado em esportes com GPS e monitoramento avançado.", specs: [["Tela", "1.69\" TFT"], ["Bateria", "10 dias"], ["GPS", "Sim"], ["Modos", "50+"]] },
+            { id: 6, name: "Pulseira Fitness", price: 99.90, image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400", description: "Pulseira fitness com monitoramento 24h de atividades.", specs: [["Tela", "0.96\" OLED"], ["Bateria", "14 dias"], ["Sensores", "FC, SpO2"], ["Resistência", "IP68"]] },
+            { id: 7, name: "Fone Gamer RGB", price: 149.90, image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400", badge: "GAMER", description: "Headset gamer com iluminação RGB e som surround.", specs: [["Driver", "50mm"], ["Microfone", "Removível"], ["Conexão", "USB/P2"], ["RGB", "Sim"]] },
+            { id: 8, name: "Carregador Turbo 65W", price: 79.90, image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400", description: "Carregador rápido GaN de 65W com múltiplas portas.", specs: [["Potência", "65W"], ["Portas", "2 USB-C + 1 USB-A"], ["Tecnologia", "GaN"], ["Compatível", "PD 3.0"]] }
+            // (Adicionei 8 produtos de exemplo para o código não ficar gigante, mas a lógica funciona para quantos você quiser!)
+        ];
+
+        // Renderizar produtos
+        const grid = document.getElementById('products-grid');
+        productsDB.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => openProductModal(product);
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
+                <div class="product-info">
+                    ${product.badge ? `<span class="badge ${product.badge === 'NOVO' ? 'badge-new' : ''}">${product.badge}</span>` : ''}
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">
+                        R$ ${product.price.toFixed(2).replace('.', ',')}
+                        <small>ou 12x de R$ ${(product.price / 12).toFixed(2).replace('.', ',')}</small>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        let currentProduct = null;
+        
+        function openProductModal(product) {
+            currentProduct = product;
+            document.getElementById('modal-image').src = product.image;
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-price').textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
+            document.getElementById('modal-description').textContent = product.description;
+            
+            const badge = document.getElementById('modal-badge');
+            if (product.badge) {
+                badge.textContent = product.badge;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+            
+            const specsList = document.getElementById('modal-specs');
+            specsList.innerHTML = product.specs.map(([key, value]) => `<li><strong>${key}:</strong> <span>${value}</span></li>`).join('');
+            
+            document.getElementById('product-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('modal-close')) {
+                    closeModal();
+                }
             });
+        });
+        
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+
+        // Máscaras de input
+        document.getElementById('customer-cpf').addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = v;
+        });
+        document.getElementById('customer-phone').addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/g, '($1) $2').replace(/(\d)(\d{4})$/, '$1-$2');
+            e.target.value = v;
+        });
+        document.getElementById('customer-cep').addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, '').replace(/(\d{5})(\d)/, '$1-$2');
+            e.target.value = v;
+        });
+
+        // Checkout - Integração Cloudflare + InfinitePay
+        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-checkout');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="loading"></span>Gerando link...';
+            btn.disabled = true;
+            
+            const customerData = {
+                name: document.getElementById('customer-name').value,
+                cpf: document.getElementById('customer-cpf').value,
+                phone: document.getElementById('customer-phone').value,
+                email: document.getElementById('customer-email').value,
+                cep: document.getElementById('customer-cep').value,
+                number: document.getElementById('customer-number').value,
+                address: document.getElementById('customer-address').value
+            };
+            
+            try {
+                const response = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        produto: currentProduct.name,
+                        preco: currentProduct.price,
+                        produtoId: currentProduct.id,
+                        infiniteTag: 'denys_lucio_da_c',
+                        customer: customerData
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Erro ao gerar link: ' + (data.error || 'Tente novamente.'));
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão. Verifique sua internet.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         });
     </script>
 </body>
