@@ -273,7 +273,7 @@
             <h2 class="section-title">⌚ Linha Completa de Smartwatches</h2>
             <p class="section-sub">Escolha o smartwatch ideal para seu estilo de vida</p>
             
-            <!-- DUNE FEATURED BLOCK ADICIONADO AQUI -->
+            <!-- DUNE FEATURED BLOCK COM IMAGENS DO IMGUR -->
             <div class="dune-featured">
                 <span class="dune-badge">🎾 LANÇAMENTO EXCLUSIVO</span>
                 <div class="dune-content">
@@ -288,18 +288,18 @@
                             <li>📍 Análise da posição dos golpes</li>
                             <li>💪 Indicadores de eficiência, resistência e defesa</li>
                             <li>💦 Resistência à água 5 ATM</li>
-                            <li>🏃 Mais de 100 modos esportivos</li>
+                            <li> Mais de 100 modos esportivos</li>
                         </ul>
                         <div class="dune-cta">
                             <button class="btn" onclick="openProductDetail('dune')">🛒 Comprar Dune Agora</button>
                         </div>
                     </div>
                     <div class="dune-gallery">
-                        <img src="dune-1.jpg" alt="Dune Visão Principal" onclick="openProductDetail('dune')">
-                        <img src="dune-2.jpg" alt="Dune Versão Preta" onclick="openProductDetail('dune')">
-                        <img src="dune-3.jpg" alt="Dune Tela AMOLED" onclick="openProductDetail('dune')">
-                        <img src="dune-4.jpg" alt="Dune Mulher com Raquete" onclick="openProductDetail('dune')">
-                        <img src="dune-5.jpg" alt="Dune Homem Jogando" onclick="openProductDetail('dune')">
+                        <img src="https://i.imgur.com/PbRxoqP.jpg" alt="Dune Visão Principal" onclick="openProductDetail('dune')">
+                        <img src="https://i.imgur.com/T6IYqJR.jpg" alt="Dune Versão Preta" onclick="openProductDetail('dune')">
+                        <img src="https://i.imgur.com/Gsb9Wic.jpg" alt="Dune Tela AMOLED" onclick="openProductDetail('dune')">
+                        <img src="https://i.imgur.com/EDuagXa.jpg" alt="Dune Mulher com Raquete" onclick="openProductDetail('dune')">
+                        <img src="https://i.imgur.com/OtvMe6b.jpg" alt="Dune Homem Jogando" onclick="openProductDetail('dune')">
                     </div>
                 </div>
             </div>
@@ -316,7 +316,6 @@
                         <button type="button" class="btn-buy" onclick="openProductDetail('horizon-lite')">👁️ Ver Detalhes</button>
                     </div>
                 </div>
-                <!-- (Os outros cards de smartwatches permanecem iguais, resumidos aqui para economizar espaço, mas estão no código completo) -->
                 <div class="gallery-card">
                     <div class="gallery-badge" style="background:#ff6b6b; color:#fff;">DESIGN</div>
                     <div class="gallery-img"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_786985-MLA113159746349_062026-F.webp" alt="FLARE" loading="lazy"></div>
@@ -353,7 +352,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO PULSEIRAS (Resumida para brevidade, mantenha todas do seu código original) -->
+        <!-- SEÇÃO PULSEIRAS (Resumida para brevidade) -->
         <section class="category-section" id="pulseiras">
             <div class="container">
                 <h2 class="section-title">📿 Pulseiras Inteligentes</h2>
@@ -368,7 +367,6 @@
                             <button type="button" class="btn-buy" onclick="openProductDetail('pulseira-aco-luxo')">👁️ Ver Detalhes</button>
                         </div>
                     </div>
-                    <!-- Adicione os outros cards de pulseiras do seu código original aqui -->
                 </div>
             </div>
         </section>
@@ -389,7 +387,6 @@
                             <button type="button" class="btn-buy" onclick="openProductDetail('headset-wz08')">👁️ Ver Detalhes</button>
                         </div>
                     </div>
-                    <!-- Adicione os outros fones do seu código original aqui -->
                 </div>
             </div>
         </section>
@@ -414,7 +411,7 @@
                         </div>
                     </div>
 
-                    <!-- MICROWEAR W10 PRO CORRIGIDO -->
+                    <!-- MICROWEAR W10 PRO -->
                     <div class="gallery-card">
                         <div class="gallery-badge" style="background:#ff0000; color:#fff; font-size: 1rem; padding: 8px 16px;">50% OFF</div>
                         <div class="gallery-img">
@@ -557,9 +554,15 @@
         const productsDB = {
             'dune': {
                 name: 'Dune - Wearzone', price: 699.90, oldPrice: 899.90, badge: 'LANÇAMENTO', badgeColor: '#F7931A',
-                images: ['dune-1.jpg', 'dune-2.jpg', 'dune-3.jpg', 'dune-4.jpg', 'dune-5.jpg'],
+                images: [
+                    'https://i.imgur.com/PbRxoqP.jpg',
+                    'https://i.imgur.com/T6IYqJR.jpg',
+                    'https://i.imgur.com/Gsb9Wic.jpg',
+                    'https://i.imgur.com/EDuagXa.jpg',
+                    'https://i.imgur.com/OtvMe6b.jpg'
+                ],
                 description: [
-                    '🎾 Análise avançada para Tênis e Beach Tennis',
+                    ' Análise avançada para Tênis e Beach Tennis',
                     '⚡ Monitoramento da velocidade da raquete',
                     '🏓 Análise de Forehand e Backhand',
                     '📍 Análise da posição dos golpes',
@@ -579,12 +582,12 @@
                 oldPrice: 249.99, 
                 badge: '50% OFF', 
                 badgeColor: '#ff0000',
-                images: ['microwear-w10-pro.jpg'], /* CORRIGIDO: Agora usa um único arquivo na raiz */
+                images: ['microwear-w10-pro.jpg'],
                 description: [
                     ' Caixa em titânio premium',
                     ' Tela AMOLED 1,77" com Always-On Display',
                     ' Certificação IP68 resistente à água',
-                    '🏃 +100 modos esportivos',
+                    ' +100 modos esportivos',
                     '🎨 Cores: Preto, Prateado e Dourado'
                 ]
             },
@@ -592,8 +595,22 @@
                 name: 'Watch 29 Pro - Microwear', price: 115.00, oldPrice: 230.00, badge: '50% OFF', badgeColor: '#ff0000',
                 images: ['https://thumbnails.meuspedidos.com.br/SgPIS1wOvXfVGLxrb3U36ZLgb1o=/fit-in/470x470/filters:fill(white)/https://arquivos.mercos.com/media/imagem_produto/421733/cea87ade-b4f6-11f0-905c-ba8a7e4b6c21.jpeg'],
                 description: [' Tela 48 mm Slim.', '🤖 ChatGPT integrado.', ' 1 GB de armazenamento interno.']
+            },
+            'flare': {
+                name: 'FLARE', price: 549.90, oldPrice: 789.99, badge: 'DESIGN', badgeColor: '#ff6b6b',
+                images: ['https://http2.mlstatic.com/D_NQ_NP_2X_786985-MLA113159746349_062026-F.webp'],
+                description: ['💧 Resistência 5ATM', ' AMOLED Cores', ' Bateria de até 10 dias']
+            },
+            'brave': {
+                name: 'BRAVE', price: 549.90, oldPrice: 789.99, badge: 'RESISTENTE', badgeColor: '#4caf50',
+                images: ['https://http2.mlstatic.com/D_NQ_NP_2X_944428-MLA98828367660_112025-F.webp'],
+                description: [' Robusto', '💧 5ATM', ' Esportes', ' 10 dias']
+            },
+            'horizon-titan': {
+                name: 'HORIZON TITAN', price: 579.90, oldPrice: 769.99, badge: 'PREMIUM', badgeColor: '#ffd700',
+                images: ['https://http2.mlstatic.com/D_NQ_NP_2X_808543-MLB111294723727_052026-F.webp'],
+                description: ['🛰️ GPS', '⚙️ Titânio', '💧 5ATM', '🔋 2 dias']
             }
-            // ... (Mantenha o restante dos produtos do seu código original aqui) ...
         };
 
         let currentDetailProduct = null;
